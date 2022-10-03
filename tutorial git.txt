@@ -1,0 +1,13 @@
+--clone project--
+git clone https://github.com/adhy/sinona.git
+--remote--
+git remote add main https://github.com/adhy/sinona.git
+--setting global username--
+git config --global user.name "First Last"
+git config --global user.email "example@example.com"
+--update sourcecode---
+git pull origin master
+--commit--
+git commit -m "Test files for test-repo-789 fork"
+--push--
+git push -f origin
