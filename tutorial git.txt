@@ -11,3 +11,7 @@ git pull origin master
 git commit -m "Test files for test-repo-789 fork"
 --push--
 git push -f origin
+--add source code--
+git add -A
+
+baru
