@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2022 at 10:19 AM
+-- Generation Time: Oct 04, 2022 at 10:45 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -241,19 +241,19 @@ INSERT INTO `tbl_menu` (`id_menu`, `title`, `url`, `icon`, `is_main_menu`, `is_a
 (3, 'level PENGGUNA', 'userlevel', 'fa fa-users', 0, 'y'),
 (9, 'Contoh Form', 'welcome/form', 'fa fa-id-card', 0, 'y'),
 (15, 'Master Data', '#', 'fa fa-caret-square-o-right', 0, 'y'),
-(16, 'Data Pegawai', 'pegawai_data', 'fa fa-caret-right', 15, 'y'),
-(17, 'Dinas Kesehatan Kab/Kota', 'dinkes_kab', 'fa fa-caret-right', 15, 'y'),
-(18, 'Dinas Kesehatan Provinsi', 'dinkes_prov', 'fa fa-caret-right', 15, 'y'),
-(19, 'Data Instansi/Lembaga', 'instansi_lembaga', 'fa fa-caret-right', 15, 'y'),
-(20, 'Data Jenis Kegiatan', 'jenis_kegiatan', 'fa fa-caret-right', 15, 'y'),
-(21, 'Data Kategori', 'kategori', 'fa fa-caret-right', 15, 'y'),
-(22, 'Data Unit Utama', 'unit_utama', 'fa fa-caret-right', 15, 'y'),
-(23, 'Data satuan Kerja', 'satuan_kerja', 'fa fa-caret-right', 15, 'y'),
+(16, 'Data Pegawai', '#', 'fa fa-caret-right', 15, 'y'),
+(17, 'Dinas Kesehatan Kab/Kota', '#', 'fa fa-caret-right', 15, 'y'),
+(18, 'Dinas Kesehatan Provinsi', '#', 'fa fa-caret-right', 15, 'y'),
+(19, 'Data Instansi/Lembaga', '#', 'fa fa-caret-right', 15, 'y'),
+(20, 'Data Jenis Kegiatan', '#', 'fa fa-caret-right', 15, 'y'),
+(21, 'Data kegiatan', '#', 'fa fa-caret-right', 15, 'y'),
+(22, 'Data Unit Utama', '#', 'fa fa-caret-right', 15, 'y'),
+(23, 'Data satuan Kerja', '#', 'fa fa-caret-right', 15, 'y'),
 (24, 'Rekomjak', '#', 'fa fa-caret-right', 0, 'y'),
-(25, 'Usulan Rekomjak', 'usulan', 'fa fa-caret-right', 24, 'y'),
-(26, 'Calon Rekomjak', 'calon', 'fa fa-caret-right', 24, 'y'),
+(25, 'Usulan Rekomjak', '#', 'fa fa-caret-right', 24, 'y'),
+(26, 'Calon Rekomjak', '#', 'fa fa-caret-right', 24, 'y'),
 (27, 'Dakung Rekomjak', '#', 'fa fa-caret-right', 24, 'y'),
-(28, 'Tim Rekomjak', 'timrekom', 'fa fa-caret-right', 24, 'y');
+(28, 'Tim Rekomjak', '#', 'fa fa-caret-right', 24, 'y');
 
 -- --------------------------------------------------------
 
@@ -366,13 +366,6 @@ CREATE TABLE `t_dinkes_kab` (
   `nama_dinkes_kab` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `t_dinkes_kab`
---
-
-INSERT INTO `t_dinkes_kab` (`id_dinkes_kab`, `nama_dinkes_kab`) VALUES
-(2, 'Bojonegoro');
-
 -- --------------------------------------------------------
 
 --
@@ -383,13 +376,6 @@ CREATE TABLE `t_dinkes_prov` (
   `id_dinkes_prov` int(11) NOT NULL,
   `nama_dinkes_prov` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `t_dinkes_prov`
---
-
-INSERT INTO `t_dinkes_prov` (`id_dinkes_prov`, `nama_dinkes_prov`) VALUES
-(1, 'Banten');
 
 -- --------------------------------------------------------
 
@@ -426,13 +412,6 @@ CREATE TABLE `t_jenis_kegiatan` (
   `id_jenis_kegiatan` int(11) NOT NULL,
   `nama_kegiatan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `t_jenis_kegiatan`
---
-
-INSERT INTO `t_jenis_kegiatan` (`id_jenis_kegiatan`, `nama_kegiatan`) VALUES
-(1, 'Jenis kegiatan');
 
 -- --------------------------------------------------------
 
@@ -740,11 +719,11 @@ INSERT INTO `t_unit_utama` (`id_unit_utama`, `nama_unit_utama`) VALUES
 CREATE TABLE `t_usulan` (
   `id_usulan` int(11) NOT NULL,
   `kode_usulan` varchar(15) NOT NULL,
-  `id_instansi_lembaga` int(11) DEFAULT NULL,
-  `id_unit_utama` int(11) DEFAULT NULL,
-  `id_satuan_kerja` int(11) DEFAULT NULL,
-  `id_dinkes_prov` int(11) DEFAULT NULL,
-  `id_dinkes_kab` int(11) DEFAULT NULL,
+  `id_instansi_lembaga` int(11) NOT NULL,
+  `id_unit_utama` int(11) NOT NULL,
+  `id_satuan_kerja` int(11) NOT NULL,
+  `id_dinkes_prov` int(11) NOT NULL,
+  `id_dinkes_kab` int(11) NOT NULL,
   `nama_instansi_non_kemenkes` varchar(255) NOT NULL,
   `nama_pengusul` varchar(255) NOT NULL,
   `jabatan_pengusul` varchar(255) NOT NULL,
@@ -762,96 +741,6 @@ CREATE TABLE `t_usulan` (
   `modified_by` varchar(255) NOT NULL,
   `modified_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `v_calon`
--- (See below for the actual view)
---
-CREATE TABLE `v_calon` (
-`kode_usulan` varchar(15)
-,`id_calon_rekomjak` int(11)
-,`full_name` varchar(50)
-,`arahan_pimpinan` text
-,`status_calon_rekomjak` enum('1','2','99')
-,`created_by` varchar(255)
-,`created_date` datetime
-,`modified_by` varchar(255)
-,`modified_date` datetime
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `v_timrekom`
--- (See below for the actual view)
---
-CREATE TABLE `v_timrekom` (
-`nama` varchar(255)
-,`nip` varchar(30)
-,`jabatan_tim` varchar(255)
-,`kode_usulan` varchar(15)
-,`id_tim_rekomjak` int(11)
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `v_usulan`
--- (See below for the actual view)
---
-CREATE TABLE `v_usulan` (
-`kode_usulan` varchar(15)
-,`nama_pengusul` varchar(255)
-,`jabatan_pengusul` varchar(255)
-,`surat_usulan` varchar(255)
-,`tahun_usulan` char(4)
-,`latar_belakang` varchar(500)
-,`identifikasi_masalah` varchar(500)
-,`tujuan` varchar(500)
-,`catatan` varchar(500)
-,`telepon` varchar(15)
-,`email` varchar(255)
-,`status_usulan` enum('0','1','2','99')
-,`created_by` varchar(255)
-,`created_date` datetime
-,`modified_by` varchar(255)
-,`modified_date` datetime
-,`nama_instansi_lembaga` varchar(255)
-,`nama_unit_utama` varchar(255)
-,`nama_satuan_kerja` varchar(255)
-,`nama_dinkes_kab` varchar(255)
-,`Satuan_Kerja` text
-,`id_usulan` int(11)
-);
-
--- --------------------------------------------------------
-
---
--- Structure for view `v_calon`
---
-DROP TABLE IF EXISTS `v_calon`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`silly`@`localhost` SQL SECURITY DEFINER VIEW `v_calon`  AS SELECT `t_usulan`.`kode_usulan` AS `kode_usulan`, `t_calon_rekomjak`.`id_calon_rekomjak` AS `id_calon_rekomjak`, `tbl_user`.`full_name` AS `full_name`, `t_calon_rekomjak`.`arahan_pimpinan` AS `arahan_pimpinan`, `t_calon_rekomjak`.`status_calon_rekomjak` AS `status_calon_rekomjak`, `t_calon_rekomjak`.`created_by` AS `created_by`, `t_calon_rekomjak`.`created_date` AS `created_date`, `t_calon_rekomjak`.`modified_by` AS `modified_by`, `t_calon_rekomjak`.`modified_date` AS `modified_date` FROM ((`t_calon_rekomjak` join `t_usulan` on(`t_calon_rekomjak`.`id_usulan` = `t_usulan`.`id_usulan`)) join `tbl_user` on(`t_calon_rekomjak`.`id_user` = `tbl_user`.`id_users`))  ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `v_timrekom`
---
-DROP TABLE IF EXISTS `v_timrekom`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`silly`@`localhost` SQL SECURITY DEFINER VIEW `v_timrekom`  AS SELECT `pegawai_data`.`nama` AS `nama`, `pegawai_data`.`nip` AS `nip`, `t_tim_rekomjak`.`jabatan_tim` AS `jabatan_tim`, `t_usulan`.`kode_usulan` AS `kode_usulan`, `t_tim_rekomjak`.`id_tim_rekomjak` AS `id_tim_rekomjak` FROM ((((`t_tim_rekomjak` join `tbl_user` on(`t_tim_rekomjak`.`id_user` = `tbl_user`.`id_users`)) join `pegawai_data` on(`tbl_user`.`id_pegawai` = `pegawai_data`.`id_pegawai`)) join `t_calon_rekomjak` on(`t_tim_rekomjak`.`id_calon_rekomjak` = `t_calon_rekomjak`.`id_calon_rekomjak` and `tbl_user`.`id_users` = `t_calon_rekomjak`.`id_user`)) join `t_usulan` on(`t_calon_rekomjak`.`id_usulan` = `t_usulan`.`id_usulan`))  ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `v_usulan`
---
-DROP TABLE IF EXISTS `v_usulan`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`silly`@`localhost` SQL SECURITY DEFINER VIEW `v_usulan`  AS SELECT `t_usulan`.`kode_usulan` AS `kode_usulan`, `t_usulan`.`nama_pengusul` AS `nama_pengusul`, `t_usulan`.`jabatan_pengusul` AS `jabatan_pengusul`, `t_usulan`.`surat_usulan` AS `surat_usulan`, `t_usulan`.`tahun_usulan` AS `tahun_usulan`, `t_usulan`.`latar_belakang` AS `latar_belakang`, `t_usulan`.`identifikasi_masalah` AS `identifikasi_masalah`, `t_usulan`.`tujuan` AS `tujuan`, `t_usulan`.`catatan` AS `catatan`, `t_usulan`.`telepon` AS `telepon`, `t_usulan`.`email` AS `email`, `t_usulan`.`status_usulan` AS `status_usulan`, `t_usulan`.`created_by` AS `created_by`, `t_usulan`.`created_date` AS `created_date`, `t_usulan`.`modified_by` AS `modified_by`, `t_usulan`.`modified_date` AS `modified_date`, `t_instansi_lembaga`.`nama_instansi_lembaga` AS `nama_instansi_lembaga`, `t_unit_utama`.`nama_unit_utama` AS `nama_unit_utama`, `t_satuan_kerja`.`nama_satuan_kerja` AS `nama_satuan_kerja`, `t_dinkes_kab`.`nama_dinkes_kab` AS `nama_dinkes_kab`, concat(`t_instansi_lembaga`.`nama_instansi_lembaga`,`t_unit_utama`.`nama_unit_utama`,`t_satuan_kerja`.`nama_satuan_kerja`,`t_dinkes_kab`.`nama_dinkes_kab`) AS `Satuan_Kerja`, `t_usulan`.`id_usulan` AS `id_usulan` FROM (((((`t_usulan` join `t_instansi_lembaga` on(`t_usulan`.`id_instansi_lembaga` = `t_instansi_lembaga`.`id_instansi_lembaga`)) join `t_unit_utama` on(`t_usulan`.`id_unit_utama` = `t_unit_utama`.`id_unit_utama`)) join `t_satuan_kerja` on(`t_usulan`.`id_satuan_kerja` = `t_satuan_kerja`.`id_satuan_kerja`)) join `t_dinkes_prov` on(`t_usulan`.`id_dinkes_prov` = `t_dinkes_prov`.`id_dinkes_prov`)) join `t_dinkes_kab` on(`t_usulan`.`id_dinkes_kab` = `t_dinkes_kab`.`id_dinkes_kab`))  ;
 
 --
 -- Indexes for dumped tables
@@ -1031,13 +920,13 @@ ALTER TABLE `t_dakung_rekomjak`
 -- AUTO_INCREMENT for table `t_dinkes_kab`
 --
 ALTER TABLE `t_dinkes_kab`
-  MODIFY `id_dinkes_kab` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_dinkes_kab` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `t_dinkes_prov`
 --
 ALTER TABLE `t_dinkes_prov`
-  MODIFY `id_dinkes_prov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_dinkes_prov` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `t_instansi_lembaga`
@@ -1049,7 +938,7 @@ ALTER TABLE `t_instansi_lembaga`
 -- AUTO_INCREMENT for table `t_jenis_kegiatan`
 --
 ALTER TABLE `t_jenis_kegiatan`
-  MODIFY `id_jenis_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jenis_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `t_kategori`
