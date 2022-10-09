@@ -5,23 +5,18 @@
                 <div class="box box-warning box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">KELOLA DATA USULAN</h3>
+                        <h3 class="box-title">KELOLA DATA T_INSTANSI_LEMBAGA</h3>
                     </div>
         
         <div class="box-body">
        <?=$this->session->flashdata('message')?>
+        <div style="padding-bottom: 10px;"'>
+        <?php echo anchor(site_url('instansi_lembaga/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?></div>
         <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
                     <th width="30px">No</th>
-                    <th>Satuan Kerja</th>
-		    <th>Kode Usulan</th>
-		    <th>Nama Pengusul</th>
-		    <th>Jabatan Pengusul</th>
-		    <th>Surat Usulan</th>
-		    <th>Tahun Usulan</th>
-		    <th>Status Usulan</th>
-	   
+		    <th>Nama Instansi Lembaga</th>
 		    <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -98,12 +93,12 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "usulan/json", "type": "POST"},
+                    ajax: {"url": "instansi_lembaga/json", "type": "POST"},
                     columns: [
                         {
-                            "data": "id_usulan",
+                            "data": "id_instansi_lembaga",
                             "orderable": false
-                        },{"data": "Satuan_Kerja"},{"data": "kode_usulan"},{"data": "nama_pengusul"},{"data": "jabatan_pengusul"},{"data": "surat_usulan"},{"data": "tahun_usulan"},{"data": "status_usulan"},
+                        },{"data": "nama_instansi_lembaga"},
                         {
                             "data" : "action",
                             "orderable": false,

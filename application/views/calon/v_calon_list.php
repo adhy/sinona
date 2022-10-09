@@ -5,23 +5,21 @@
                 <div class="box box-warning box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">KELOLA DATA USULAN</h3>
+                        <h3 class="box-title">KELOLA DATA V_CALON</h3>
                     </div>
         
         <div class="box-body">
        <?=$this->session->flashdata('message')?>
+        <div style="padding-bottom: 10px;"'>
+        <?php echo anchor(site_url('calon/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?></div>
         <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
                     <th width="30px">No</th>
-                    <th>Satuan Kerja</th>
 		    <th>Kode Usulan</th>
-		    <th>Nama Pengusul</th>
-		    <th>Jabatan Pengusul</th>
-		    <th>Surat Usulan</th>
-		    <th>Tahun Usulan</th>
-		    <th>Status Usulan</th>
-	   
+		    <th>Full Name</th>
+		    <th>Arahan Pimpinan</th>
+		    <th>Status Calon Rekomjak</th>
 		    <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -98,12 +96,12 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "usulan/json", "type": "POST"},
+                    ajax: {"url": "calon/json", "type": "POST"},
                     columns: [
                         {
-                            "data": "id_usulan",
+                            "data": "id_calon_rekomjak",
                             "orderable": false
-                        },{"data": "Satuan_Kerja"},{"data": "kode_usulan"},{"data": "nama_pengusul"},{"data": "jabatan_pengusul"},{"data": "surat_usulan"},{"data": "tahun_usulan"},{"data": "status_usulan"},
+                        },{"data": "kode_usulan"},{"data": "full_name"},{"data": "arahan_pimpinan"},{"data": "status_calon_rekomjak"},
                         {
                             "data" : "action",
                             "orderable": false,
