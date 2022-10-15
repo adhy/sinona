@@ -129,9 +129,9 @@
 <div class="col-md-5">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title"> Uanggah DAKUNG</h3>
+				<h3 class="box-title">Uanggah DAKUNG</h3>
 			</div>
-			<form action="<?php echo $action; ?>" method="post">
+			<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 			
 				<table class='table table-bordered'>
 					<?php 
@@ -140,19 +140,21 @@
 					?>
 				
 					<tr>
-						<td width='200'>Nama</td><td><?php echo cmb_diwherebulan('nama', 'v_pegawai', 'nama','id_users','','', 'Masukan nama pegawai ...') ?> <?php echo form_error('nama') ?></td>
+						<td width='200'>Nama</td><td><input type="text" class="form-control" name="nama" id="nama" placeholder="nama"/> <?php echo form_error('nama') ?></td>
 					</tr>
 
 					<tr>
-					<td width='200'>Jabatan</td><td>
-					<select class="form-control" name="jabatan">
-						<option value='0'>Ketua</option>
-						<option value='1'>Wakil Ketua</option>
-						<option value='2'>Sekretaris</option>
-						<option value='3'>Anggota</option>
-					</select>
+						<td width='200'>Kategori</td><td><?php echo cmb_diwherebulan('kategori', 't_kategori', 'nama_kategori','id_kategori','','', 'Masukan kategori ...') ?> <?php echo form_error('kategori') ?></td>
+					</tr>
+
+					<tr>
+						<td width='200'>Kegiatan</td><td><?php echo cmb_diwherebulan('kegiatan', 't_jenis_kegiatan', 'nama_kegiatan','id_jenis_kegiatan','','', 'Masukan kegiatan ...') ?> <?php echo form_error('kegiatan') ?></td>
+					</tr>
+
+					<tr>
+						<td width='200'>Foto Profile <?php echo form_error('dukungan') ?></td><td> <input type="file" name="dukungan"></td>
 					
-					<?php echo form_error('nama') ?></td>
+					<?php echo form_error('dukungan') ?></td>
 					</tr>
 	
 					
@@ -182,7 +184,6 @@
                 <tr>
                     <th width="30px">No</th>
 		    <th>Nama</th>
-            <th>Jabatan</th>
 		    <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -258,12 +259,12 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "<?=base_url()?>calon/timnya", "type": "POST"},
+                    ajax: {"url": "<?=base_url()?>dakungall/filenya", "type": "POST"},
                     columns: [
                         {
-                            "data": "id_calon_rekomjak",
+                            "data": "id_dakung",
                             "orderable": false
-                        },{"data": "nama", "orderable": false,},{"data": "jabatan", "orderable": false,},
+                        },{"data": "judul_dakung", "orderable": false,},
                         {
                             "data" : "action",
                             "orderable": false,

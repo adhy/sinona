@@ -7,7 +7,10 @@ class Dakungall_model extends CI_Model
 {
 
     public $table = 'v_dakungall';
+    public $table2 = 'v_dakungall';
+    public $table3 = 't_dakung_rekomjak';
     public $id = 'id_calon_rekomjak';
+    public $id2 = 'id_dakung';
     public $order = 'DESC';
 
     function __construct()
@@ -24,7 +27,16 @@ class Dakungall_model extends CI_Model
         $this->datatables->add_column('action', anchor(site_url('dakungall/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm')), 'id_calon_rekomjak');
         return $this->datatables->generate();
     }
-
+    function jsonfile($id) {
+        $this->datatables->select('id_dakung,id_kategori,id_jenis_kegiatan,id_calon_rekomjak,judul_dakung,file_dakung');
+        $this->datatables->from('t_dakung_rekomjak');
+        $this->datatables->where('id_calon_rekomjak',$id);
+        $this->datatables->edit_column('judul_dakung', anchor(site_url('assets/doc_/$2'),'<i class="fa fa-file-pdf-o fa-2x pr-1" aria-hidden="true"></i>$1','target="_blank"'), 'judul_dakung, file_dakung');
+        //add this line for join
+        //$this->datatables->join('table2', 'v_calon.field = table2.field');
+        $this->datatables->add_column('action', anchor('#','<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" data-href="'.site_url('dakungall/del/$1').'" data-toggle="modal" data-target="#confirm-delete"'), 'id_dakung');
+        return $this->datatables->generate();
+    }
     // get all
     function get_all()
     {
@@ -37,6 +49,12 @@ class Dakungall_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+    // get data by id
+    function get_by_idfile($id)
+    {
+        $this->db->where($this->id2, $id);
+        return $this->db->get($this->table3)->row();
     }
     
     // get total rows
@@ -97,7 +115,7 @@ class Dakungall_model extends CI_Model
     // insert data
     function insert($data)
     {
-        $this->db->insert($this->table, $data);
+        $this->db->insert($this->table3, $data);
     }
 
     // update data
@@ -113,6 +131,12 @@ class Dakungall_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+     // delete data
+     function del($id)
+     {
+         $this->db->where($this->id2, $id);
+         $this->db->delete($this->table3);
+     }
 
 }
 
