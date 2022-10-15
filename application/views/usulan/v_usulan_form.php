@@ -2,17 +2,22 @@
 	<section class="content">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title"><?php echo strtoupper($button) ?> DATA V_USULAN</h3>
+				<h3 class="box-title"><?php echo strtoupper($button) ?> DATA USULAN</h3>
 			</div>
 			<form action="<?php echo $action; ?>" method="post">
 			
 				<table class='table table-bordered'>
-				<tr>
-						<td width='200'>Satuan Kerja </td>
-						<td> <textarea class="form-control" rows="3" name="Satuan_Kerja" id="Satuan_Kerja" placeholder="Satuan Kerja"><?php echo $Satuan_Kerja; ?></textarea> <?php echo form_error('Satuan_Kerja') ?></td>
+	
+					<tr>
+						<td width='200'>Id Usulan </td><td><input type="text" class="form-control" name="id_usulan" id="id_usulan" placeholder="Id Usulan" value="<?php echo $id_usulan; ?>" /> <?php echo form_error('id_usulan') ?></td>
 					</tr>
+	
 					<tr>
 						<td width='200'>Kode Usulan </td><td><input type="text" class="form-control" name="kode_usulan" id="kode_usulan" placeholder="Kode Usulan" value="<?php echo $kode_usulan; ?>" /> <?php echo form_error('kode_usulan') ?></td>
+					</tr>
+	
+					<tr>
+						<td width='200'>Satuan Kerja </td><td><input type="text" class="form-control" name="Satuan_Kerja" id="Satuan_Kerja" placeholder="Satuan Kerja" value="<?php echo $Satuan_Kerja; ?>" /> <?php echo form_error('Satuan_Kerja') ?></td>
 					</tr>
 	
 					<tr>
@@ -73,7 +78,7 @@
 	
 					<tr>
 						<td width='200'>Modified Date </td><td><input type="text" class="form-control" name="modified_date" id="modified_date" placeholder="Modified Date" value="<?php echo $modified_date; ?>" /> <?php echo form_error('modified_date') ?></td>
-					</tr>				
+					</tr>
 	
 					<tr>
 						<td></td>

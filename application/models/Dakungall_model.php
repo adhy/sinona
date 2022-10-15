@@ -3,13 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Usulan_model extends CI_Model
+class Dakungall_model extends CI_Model
 {
 
-    public $table = 'v_usulan';
-    public $table3 = 't_usulan';
-    public $table2 = 't_calon_rekomjak';
-    public $id = 'id_usulan';
+    public $table = 'v_dakungall';
+    public $id = 'id_calon_rekomjak';
     public $order = 'DESC';
 
     function __construct()
@@ -19,14 +17,11 @@ class Usulan_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_usulan,kode_usulan,Satuan_Kerja,nama_pengusul,jabatan_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,email,status_usulan,created_by,created_date,modified_by,modified_date,nama,id_user,id_pegawai');
-        $this->datatables->from('v_usulan');
+        $this->datatables->select('kode_usulan,id_calon_rekomjak,nama,arahan_pimpinan,status_calon_rekomjak,created_by,created_date,modified_by,modified_date,nama_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,status_usulan,id_usulan,jabatan,id_user');
+        $this->datatables->from('v_dakungall');
         //add this line for join
-        //$this->datatables->join('table2', 'v_usulan.field = table2.field');
-        $this->datatables->add_column('surat_usulan', '$1', 'download(surat_usulan)');
-        $this->datatables->add_column('status_usulan', '$1', 'status(status_usulan)');
-        $this->datatables->add_column('nama', '$1', 'disposisi(nama)');
-        $this->datatables->add_column('action', '$1', 'dispotombol(id_usulan,status_usulan)');
+        //$this->datatables->join('table2', 'v_dakungall.field = table2.field');
+        $this->datatables->add_column('action', anchor(site_url('dakungall/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm')), 'id_calon_rekomjak');
         return $this->datatables->generate();
     }
 
@@ -46,12 +41,16 @@ class Usulan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('id_usulan', $q);
-	$this->db->or_like('id_usulan', $q);
-	$this->db->or_like('kode_usulan', $q);
-	$this->db->or_like('Satuan_Kerja', $q);
+        $this->db->like('id_calon_rekomjak', $q);
+	$this->db->or_like('id_calon_rekomjak', $q);
+	$this->db->or_like('nama', $q);
+	$this->db->or_like('arahan_pimpinan', $q);
+	$this->db->or_like('status_calon_rekomjak', $q);
+	$this->db->or_like('created_by', $q);
+	$this->db->or_like('created_date', $q);
+	$this->db->or_like('modified_by', $q);
+	$this->db->or_like('modified_date', $q);
 	$this->db->or_like('nama_pengusul', $q);
-	$this->db->or_like('jabatan_pengusul', $q);
 	$this->db->or_like('surat_usulan', $q);
 	$this->db->or_like('tahun_usulan', $q);
 	$this->db->or_like('latar_belakang', $q);
@@ -59,12 +58,10 @@ class Usulan_model extends CI_Model
 	$this->db->or_like('tujuan', $q);
 	$this->db->or_like('catatan', $q);
 	$this->db->or_like('telepon', $q);
-	$this->db->or_like('email', $q);
 	$this->db->or_like('status_usulan', $q);
-	$this->db->or_like('created_by', $q);
-	$this->db->or_like('created_date', $q);
-	$this->db->or_like('modified_by', $q);
-	$this->db->or_like('modified_date', $q);
+	$this->db->or_like('id_usulan', $q);
+	$this->db->or_like('jabatan', $q);
+	$this->db->or_like('id_user', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -72,12 +69,16 @@ class Usulan_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_usulan', $q);
-	$this->db->or_like('id_usulan', $q);
-	$this->db->or_like('kode_usulan', $q);
-	$this->db->or_like('Satuan_Kerja', $q);
+        $this->db->like('id_calon_rekomjak', $q);
+	$this->db->or_like('id_calon_rekomjak', $q);
+	$this->db->or_like('nama', $q);
+	$this->db->or_like('arahan_pimpinan', $q);
+	$this->db->or_like('status_calon_rekomjak', $q);
+	$this->db->or_like('created_by', $q);
+	$this->db->or_like('created_date', $q);
+	$this->db->or_like('modified_by', $q);
+	$this->db->or_like('modified_date', $q);
 	$this->db->or_like('nama_pengusul', $q);
-	$this->db->or_like('jabatan_pengusul', $q);
 	$this->db->or_like('surat_usulan', $q);
 	$this->db->or_like('tahun_usulan', $q);
 	$this->db->or_like('latar_belakang', $q);
@@ -85,12 +86,10 @@ class Usulan_model extends CI_Model
 	$this->db->or_like('tujuan', $q);
 	$this->db->or_like('catatan', $q);
 	$this->db->or_like('telepon', $q);
-	$this->db->or_like('email', $q);
 	$this->db->or_like('status_usulan', $q);
-	$this->db->or_like('created_by', $q);
-	$this->db->or_like('created_date', $q);
-	$this->db->or_like('modified_by', $q);
-	$this->db->or_like('modified_date', $q);
+	$this->db->or_like('id_usulan', $q);
+	$this->db->or_like('jabatan', $q);
+	$this->db->or_like('id_user', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -98,7 +97,7 @@ class Usulan_model extends CI_Model
     // insert data
     function insert($data)
     {
-        $this->db->insert($this->table2, $data);
+        $this->db->insert($this->table, $data);
     }
 
     // update data
@@ -106,11 +105,6 @@ class Usulan_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         $this->db->update($this->table, $data);
-    }
-    function updateusulan($id, $data)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->update($this->table3, $data);
     }
 
     // delete data
@@ -122,8 +116,8 @@ class Usulan_model extends CI_Model
 
 }
 
-/* End of file Usulan_model.php */
-/* Location: ./application/models/Usulan_model.php */
+/* End of file Dakungall_model.php */
+/* Location: ./application/models/Dakungall_model.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2022-10-13 14:21:17 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2022-10-15 05:10:20 */
 /* http://harviacode.com */

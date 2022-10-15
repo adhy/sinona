@@ -5,24 +5,22 @@
                 <div class="box box-warning box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">KELOLA DATA USULAN</h3>
+                        <h3 class="box-title">KELOLA DATA V_DAKUNGALL</h3>
                     </div>
         
         <div class="box-body">
        <?=$this->session->flashdata('message')?>
-        <div style="padding-bottom: 10px;"'></div>
+        <div style="padding-bottom: 10px;"'>
+        <?php echo anchor(site_url('dakungall/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?></div>
         <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
                     <th width="30px">No</th>
-		    <th>Kode Usulan</th>
+		    <th width="150px">Kode Usulan</th>
+		    <th>Ketua</th>
 		    <th>Tujuan</th>
-		    <th>Satuan Kerja</th>
-		    <th>Nama Pengusul</th>
-		    <th>Surat Usulan</th>
-		    <th>Disposisi</th>
-		    <th>Tahun Usulan</th>
-		    <th width="200px">Disposisi</th>
+		    <th>Arahan Pimpinan</th>
+		    <th width="200px">Data Dukung</th>
                 </tr>
             </thead>
 	    
@@ -98,12 +96,12 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "usulan/json", "type": "POST"},
+                    ajax: {"url": "dakungall/json", "type": "POST"},
                     columns: [
                         {
-                            "data": "id_usulan",
+                            "data": "id_calon_rekomjak",
                             "orderable": false
-                        },{"data": "kode_usulan"},{"data": "tujuan"},{"data": "Satuan_Kerja"},{"data": "nama_pengusul"},{"data": "surat_usulan"},{"data": "nama"},{"data": "tahun_usulan"},
+                        },{"data": "kode_usulan"},{"data": "nama"},{"data": "tujuan"},{"data": "arahan_pimpinan"},
                         {
                             "data" : "action",
                             "orderable": false,

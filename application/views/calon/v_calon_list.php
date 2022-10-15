@@ -11,15 +11,14 @@
         <div class="box-body">
        <?=$this->session->flashdata('message')?>
         <div style="padding-bottom: 10px;"'>
-        <?php echo anchor(site_url('calon/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?></div>
+</div>
         <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
                     <th width="30px">No</th>
 		    <th>Kode Usulan</th>
-		    <th>Full Name</th>
+            <th>Tujuan</th>
 		    <th>Arahan Pimpinan</th>
-		    <th>Status Calon Rekomjak</th>
 		    <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -101,7 +100,7 @@
                         {
                             "data": "id_calon_rekomjak",
                             "orderable": false
-                        },{"data": "kode_usulan"},{"data": "full_name"},{"data": "arahan_pimpinan"},{"data": "status_calon_rekomjak"},
+                        },{"data": "kode_usulan"},{"data": "tujuan"},{"data": "arahan_pimpinan"},
                         {
                             "data" : "action",
                             "orderable": false,

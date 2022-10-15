@@ -2,11 +2,11 @@
 <div class="content-wrapper">
 	
 	<section class="content">
-	<div class="row">
-		<div class="col-md-7">
+		<div class="row">
+			<div class="col-md-7">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title">DETAIL DATA CALON</h3>
+				<h3 class="box-title">DETAIL USULAN REKOMJAK</h3>
 			</div>
 		
 		<table class='table table-bordered'>        
@@ -23,7 +23,7 @@
 			</tr>
 	
 			<tr>
-				<td>Ketua</td>
+				<td>Nama</td>
 				<td><?php echo $nama; ?></td>
 			</tr>
 	
@@ -102,15 +102,34 @@
 				<td><?php echo $status_usulan; ?></td>
 			</tr>
 	
-			
+			<tr>
+				<td>Id Usulan</td>
+				<td><?php echo $id_usulan; ?></td>
+			</tr>
+	
+			<tr>
+				<td>Jabatan</td>
+				<td><?php echo $jabatan; ?></td>
+			</tr>
+	
+			<tr>
+				<td>Id User</td>
+				<td><?php echo $id_user; ?></td>
+			</tr>
+	
+			<tr>
+				<td></td>
+				<td><a href="<?php echo site_url('dakungall') ?>" class="btn btn-default">Kembali</a></td>
+			</tr>
 	
 		</table>
 		</div>
 		</div>
-		<div class="col-md-5">
+		
+<div class="col-md-5">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title"> Tim Rekomjak</h3>
+				<h3 class="box-title"> Uanggah DAKUNG</h3>
 			</div>
 			<form action="<?php echo $action; ?>" method="post">
 			
@@ -151,10 +170,11 @@
 			</form>
 		</div>
 		</div>
-		<div class="col-md-5">
+
+<div class="col-md-5">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title"> Daftar Tim Rekomjak</h3>
+				<h3 class="box-title"> DATA DAKUNG</h3>
 			</div>
 			
 			<table class="table table-bordered table-striped" id="mytable">

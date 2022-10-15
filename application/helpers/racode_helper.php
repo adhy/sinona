@@ -14,7 +14,30 @@ function cmb_dinamis($name,$table,$field,$pk,$selected=null,$order=null){
     $cmb .="</select>";
     return $cmb;  
 }
+function dispotombol($string,$status){
+    if($status>'0'){$string='<p class="text-red">Sudah Disposisi</p>';}else{$string=anchor(site_url('usulan/read/'.$string.''),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm'));}
+    return $string;
+}
+function cmb_diwherebulan($name,$table,$field,$pk,$selected=null,$order=null,$placeholder=null){
+    $ci = get_instance();
+    $cmb = "<select name='$name' class='form-control select2' data-placeholder='$placeholder'><option></option>";
+    if($order){
+        $ci->db->order_by($field,$order);
+    }
+    $data = $ci->db->get($table)->result();
+    foreach ($data as $d){
+        $cmb .="<option value='".$d->$pk."'";
+        $cmb .= $selected==$d->$pk?" selected='selected'":'';
+        $cmb .=">". $d->$field."</option>";
+    }
+    $cmb .="</select>";
+    return $cmb;  
+}
 
+function download($string){
+    $string=anchor(site_url('assets/doc_surat/'.$string.''),'<i class="fa fa-file-pdf-o fa-2x pr-1" aria-hidden="true"></i>Unduh');
+    return $string;
+}
 function select2_dinamis($name,$table,$field,$placeholder){
     $ci = get_instance();
     $select2 = '<select name="'.$name.'" class="form-control select2 select2-hidden-accessible" multiple="" 
@@ -26,6 +49,10 @@ function select2_dinamis($name,$table,$field,$placeholder){
     $select2 .='</select>';
     return $select2;
 }
+function disposisi($string){
+    if(empty($string)){$string='<span class="label label-warning">Belum ada disposisi</span>';}
+    return $string;
+    }
 function notif($data){
     $ci = get_instance();
     switch ($data){
@@ -40,6 +67,41 @@ function notif($data){
             break;
         case 3:
             return $data=$ci->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Hapus Data Berhasil</div>');
+            break;
+    }
+}
+function status($data){
+    $ci = get_instance();
+    switch ($data){
+        case 0:
+            return $data= '<span class="label label-info">Usulan Baru</span>';
+            break;
+        case 1:
+            return $data= '<span class="label label-info">Sudah di baca</span>';
+            break;
+        case 2:
+            return $data= '<span class="label label-danger">DiTindak Lanjut</span>';
+            break;
+        case 99:
+            return $data= '<span class="label label-warning">Usulan Ditolak</span>';
+            break;
+    }
+}
+
+function helpjab($data){
+    $ci = get_instance();
+    switch ($data){
+        case 0:
+            return $data= 'Ketua';
+            break;
+        case 1:
+            return $data= 'Wakil Ketua';
+            break;
+        case 2:
+            return $data= 'Sekretaris';
+            break;
+        case 3:
+            return $data= 'Anggota';
             break;
     }
 }

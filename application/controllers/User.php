@@ -50,7 +50,8 @@ class User extends CI_Controller
             'button'        => 'Create',
             'action'        => site_url('user/create_action'),
 	    'id_users'      => set_value('id_users'),
-	    'full_name'     => set_value('full_name'),
+        'id_pegawai'     => set_value('id_pegawai'),
+	    //'full_name'     => set_value('full_name'),
 	    'email'         => set_value('email'),
 	    'password'      => set_value('password'),
 	    'images'        => set_value('images'),
@@ -74,6 +75,7 @@ class User extends CI_Controller
             
             $data = array(
 		'full_name'     => $this->input->post('full_name',TRUE),
+		'id_pegawai'     => $this->input->post('id_pegawai',TRUE),
 		'email'         => $this->input->post('email',TRUE),
 		'password'      => $hashPassword,
 		'images'        => $foto['file_name'],
@@ -169,7 +171,8 @@ class User extends CI_Controller
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('full_name', 'full name', 'trim|required');
+	$this->form_validation->set_rules('id_pegawai', 'Pegawai name', 'trim|required');
+	//$this->form_validation->set_rules('full_name', 'full name', 'trim|required');
 	$this->form_validation->set_rules('email', 'email', 'trim|required');
 	//$this->form_validation->set_rules('password', 'password', 'trim|required');
 	//$this->form_validation->set_rules('images', 'images', 'trim|required');
