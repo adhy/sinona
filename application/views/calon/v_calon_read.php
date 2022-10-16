@@ -18,12 +18,7 @@
 			</tr>
 	
 			<tr>
-				<td>Id Calon Rekomjak</td>
-				<td><?php echo $id_calon_rekomjak; ?></td>
-			</tr>
-	
-			<tr>
-				<td>Ketua</td>
+				<td>Disposisi</td>
 				<td><?php echo $nama; ?></td>
 			</tr>
 	
@@ -34,27 +29,7 @@
 	
 			<tr>
 				<td>Status Calon Rekomjak</td>
-				<td><?php echo $status_calon_rekomjak; ?></td>
-			</tr>
-	
-			<tr>
-				<td>Created By</td>
-				<td><?php echo $created_by; ?></td>
-			</tr>
-	
-			<tr>
-				<td>Created Date</td>
-				<td><?php echo $created_date; ?></td>
-			</tr>
-	
-			<tr>
-				<td>Modified By</td>
-				<td><?php echo $modified_by; ?></td>
-			</tr>
-	
-			<tr>
-				<td>Modified Date</td>
-				<td><?php echo $modified_date; ?></td>
+				<td><?php echo statuscr($status_calon_rekomjak); ?></td>
 			</tr>
 	
 			<tr>
@@ -99,9 +74,22 @@
 	
 			<tr>
 				<td>Status Usulan</td>
-				<td><?php echo $status_usulan; ?></td>
+				<td><?php echo status($status_usulan); ?></td>
 			</tr>
-	
+
+			<tr>
+				<td>Usulan Ditolak</td>
+				<td><?php 
+						//$id_usulan=99;
+						$status_usulan=$this->session->userdata('status_usulan');
+						$id_usulan=$this->session->userdata('id_usulan');
+						if($status_usulan!=99){
+							echo anchor(site_url('calon/tolak/'.$id_usulan.''),'<i class="fa fa-remove" aria-hidden="true"></i>Tolak Usulan', array('class' => 'btn btn-danger btn-sm'));
+						}elseif($status_usulan==99){
+							echo anchor(site_url('#'),'<i class="fa fa-remove" aria-hidden="true"></i>Usulan Ditolak', array('class' => 'btn btn-danger btn-sm disabled'));
+						}
+				?></td>
+			</tr>
 			
 	
 		</table>
@@ -121,7 +109,7 @@
 					?>
 				
 					<tr>
-						<td width='200'>Nama</td><td><?php echo cmb_diwherebulan('nama', 'v_pegawai', 'nama','id_users','','', 'Masukan nama pegawai ...') ?> <?php echo form_error('nama') ?></td>
+						<td width='200'>Nama</td><td><?php echo cmb_di('nama', 'v_pegawai', 'nama','id_users','','', 'Masukan nama pegawai ...') ?> <?php echo form_error('nama') ?></td>
 					</tr>
 
 					<tr>

@@ -14,11 +14,26 @@ function cmb_dinamis($name,$table,$field,$pk,$selected=null,$order=null){
     $cmb .="</select>";
     return $cmb;  
 }
-function dispotombol($string,$status){
-    if($status>'0'){$string='<p class="text-red">Sudah Disposisi</p>';}else{$string=anchor(site_url('usulan/read/'.$string.''),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm'));}
+function dispotombol($string,$status=null){
+    if($status>1){$string='<p class="text-red">Sudah Disposisi</p>';}else{$string=anchor(site_url('usulan/read/'.$string.''),'<i class="fa fa-send" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm'));}
     return $string;
 }
-function cmb_diwherebulan($name,$table,$field,$pk,$selected=null,$order=null,$placeholder=null){
+function cmb_diwherebulan($name,$table,$field,$pk,$selected=null,$order=null,$where=null,$placeholder=null){
+    $ci = get_instance();
+    $cmb = "<select name='$name' class='form-control select2' data-placeholder='$placeholder'><option></option>";
+    if($order){
+        $ci->db->order_by($field,$order);
+    }
+    $data = $ci->db->get_where($table,$where)->result();
+    foreach ($data as $d){
+        $cmb .="<option value='".$d->$pk."'";
+        $cmb .= $selected==$d->$pk?" selected='selected'":'';
+        $cmb .=">". $d->$field."</option>";
+    }
+    $cmb .="</select>";
+    return $cmb;  
+}
+function cmb_di($name,$table,$field,$pk,$selected=null,$order=null,$placeholder=null){
     $ci = get_instance();
     $cmb = "<select name='$name' class='form-control select2' data-placeholder='$placeholder'><option></option>";
     if($order){
@@ -77,13 +92,27 @@ function status($data){
             return $data= '<span class="label label-info">Usulan Baru</span>';
             break;
         case 1:
-            return $data= '<span class="label label-info">Sudah di baca</span>';
+            return $data= '<span class="label label-success">Sudah di baca</span>';
             break;
         case 2:
-            return $data= '<span class="label label-danger">DiTindak Lanjut</span>';
+            return $data= '<span class="label label-warning">DiTindak Lanjut</span>';
             break;
         case 99:
-            return $data= '<span class="label label-warning">Usulan Ditolak</span>';
+            return $data= '<span class="label label-danger">Usulan Ditolak</span>';
+            break;
+    }
+}
+function statuscr($data){
+    $ci = get_instance();
+    switch ($data){
+        case 1:
+            return $data= '<span class="label label-success">Penyusunan</span>';
+            break;
+        case 2:
+            return $data= '<span class="label label-warning">DiTindak Lanjut</span>';
+            break;
+        case 99:
+            return $data= '<span class="label label-danger">Ditolak</span>';
             break;
     }
 }

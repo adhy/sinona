@@ -9,8 +9,10 @@ class Calon_model extends CI_Model
     public $table = 'v_calon';
     public $table2 = 'v_timkojak';
     public $table3 = 't_tim_rekomjak';
+    public $table4 = 't_usulan';
     public $id = 'id_calon_rekomjak';
     public $id2 = 'id_tim_rekomjak';
+    public $id3 = 'id_usulan';
     public $order = 'DESC';
 
     function __construct()
@@ -19,8 +21,8 @@ class Calon_model extends CI_Model
     }
 
     // datatables
-    function json($id) {
-        if($id!=1||$id!=3){
+    function json($id,$di) {
+        if($di<=3){
             $this->datatables->select('id_user,kode_usulan,id_calon_rekomjak,nama,arahan_pimpinan,status_calon_rekomjak,created_by,created_date,modified_by,modified_date,nama_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,status_usulan');
         $this->datatables->from('v_calon');
 
@@ -69,6 +71,12 @@ class Calon_model extends CI_Model
     {
         $this->db->where($this->id2, $id);
         return $this->db->get($this->table3)->row();
+    }
+    // get data by id
+    function get_by_idusulan($id)
+    {
+        $this->db->where($this->id3, $id);
+        return $this->db->get($this->table4)->row();
     }
     
     // get total rows

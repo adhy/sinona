@@ -20,9 +20,10 @@ class Calon extends CI_Controller
     } 
     
     public function json() {
-        $iduser=$this->session->userdata('id_user');
+        $iduser=$this->session->userdata('id_users');
+        $iduserlevel=$this->session->userdata('id_user_level');
         header('Content-Type: application/json');
-        echo $this->Calon_model->json($iduser);
+        echo $this->Calon_model->json($iduser,$iduserlevel);
     }
     public function timnya() {
         $id_crkom=$this->session->userdata('id_crkom');
@@ -57,7 +58,16 @@ class Calon extends CI_Controller
 		'button' => 'Buat',
                 'action' => site_url('calon/create_action'),
 		'id_usulan' => set_value('id_usulan', $row->id_usulan),
-	    );
+	    );  
+        $ses_data['id_usulan']=$row->id_usulan;
+        $ses_data['status_usulan']=$row->status_usulan;
+        $ses_data['id_calon_rekomjak']=$row->id_calon_rekomjak;
+        $this->session->set_userdata($ses_data);
+            if($row->status_usulan=='0'){
+                $data_edit2=array('status_usulan'=>'1');
+                $this->db->where("id_usulan",$row->id_usulan)->update('t_usulan',$data_edit2);  
+            }
+            
             $this->template->load('template','calon/v_calon_read', $data);
         } else {
             notif('2');
@@ -96,6 +106,7 @@ class Calon extends CI_Controller
     {	
         $this->_rules();
 		$id_crkom=$this->session->userdata('id_crkom');
+        $id_usulan=$this->session->userdata('id_usulan');
         if ($this->form_validation->run() == FALSE) {
 			
             $this->read($id_crkom);
@@ -107,6 +118,11 @@ class Calon extends CI_Controller
 	    );
 
             $this->Calon_model->insert($data);
+            if($id_usulan=='1'){
+                $data_edit2=array('status_usulan'=>'2');     
+                $this->db->where("id_usulan",$id_usulan)->update('t_usulan',$data_edit2);
+            }
+            
             notif('0');
             redirect(site_url('calon/read/'.$id_crkom.''));
         }
@@ -199,6 +215,22 @@ class Calon extends CI_Controller
 		$id_crkom=$this->session->userdata('id_crkom');
         if ($row) {
             $this->Calon_model->del($id);
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        } else {
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        }
+    }
+    public function tolak($id) 
+    {
+        $row = $this->Calon_model->get_by_idusulan($id);
+		$id_crkom=$this->session->userdata('id_crkom');
+		$id_calon_rekomjak=$this->session->userdata('id_calon_rekomjak');
+        if ($row) {
+                $data_edit2=array('status_usulan'=>'99');     
+                $data_edit22=array('status_calon_rekomjak'=>'99');     
+                $this->db->where("id_usulan",$id)->update('t_usulan',$data_edit2);
+                $this->db->where("id_calon_rekomjak",$id_calon_rekomjak)->update('t_calon_rekomjak',$data_edit22);
+            //$this->Calon_model->del($id);
             redirect(site_url('calon/read/'.$id_crkom.''));
         } else {
             redirect(site_url('calon/read/'.$id_crkom.''));

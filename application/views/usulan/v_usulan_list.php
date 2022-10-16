@@ -20,8 +20,9 @@
 		    <th>Satuan Kerja</th>
 		    <th>Nama Pengusul</th>
 		    <th>Surat Usulan</th>
-		    <th>Disposisi</th>
+		    <th>Tujuan Disposisi</th>
 		    <th>Tahun Usulan</th>
+		    <th>Status Usulan</th>
 		    <th width="200px">Disposisi</th>
                 </tr>
             </thead>
@@ -103,7 +104,7 @@
                         {
                             "data": "id_usulan",
                             "orderable": false
-                        },{"data": "kode_usulan"},{"data": "tujuan"},{"data": "Satuan_Kerja"},{"data": "nama_pengusul"},{"data": "surat_usulan"},{"data": "nama"},{"data": "tahun_usulan"},
+                        },{"data": "kode_usulan"},{"data": "tujuan"},{"data": "Satuan_Kerja"},{"data": "nama_pengusul"},{"data": "surat_usulan"},{"data": "nama"},{"data": "tahun_usulan"},{"data": "status_us"},
                         {
                             "data" : "action",
                             "orderable": false,

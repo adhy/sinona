@@ -58,9 +58,7 @@
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-danger btn-block btn-flat"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
                     </div>
-                    <div class="col-xs-6">
-                        <?php echo anchor('#', '<i class="fa fa-eye-slash" aria-hidden="true"></i> Lupa Password', array('class' => 'btn btn-primary btn-block btn-flat')); ?>
-                    </div>
+                    
                 </div>
                 <!-- /.col -->
 
@@ -69,14 +67,19 @@
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-xs-12">
                         <div class="callout callout-info">
-                            <h4>Level Super Admin</h4>
+                            <h4>Kepala</h4>
 
-                            <p><b>Email</b> : super.admin@gmail.com</p>
+                            <p><b>Email</b> : kkepala@mail.com</p>
                             <p><b>Password</b> : password</p>
                             <hr>
-                            <h4>Level Admin</h4>
+                            <h4>katimja</h4>
 
-                            <p><b>Email</b> : admin@gmail.com</p>
+                            <p><b>Email</b> : kkatimja@mail.com</p>
+                            <p><b>Password</b> : password</p>
+                            <hr>
+                            <h4>Staff</h4>
+
+                            <p><b>Email</b> : kstaff@mail.com</p>
                             <p><b>Password</b> : password</p>
                         </div>
                     </div>

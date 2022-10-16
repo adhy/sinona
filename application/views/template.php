@@ -62,7 +62,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="<?php echo base_url() ?>assets/foto_profil/<?php echo $this->session->userdata('images'); ?>" class="user-image" alt="User Image">
-                                    <span class="hidden-xs"><?php echo $this->session->userdata('full_name'); ?> </span>
+                                    <span class="hidden-xs"><?php echo $this->session->userdata('email'); ?> </span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -70,8 +70,8 @@
                                         <img src="<?php echo base_url() ?>assets/foto_profil/<?php echo $this->session->userdata('images'); ?> " class="img-circle" alt="User Image">
 
                                         <p>
-                                            <?php echo $this->session->userdata('full_name'); ?>                                         
-                                            <small>Member since Nov. 2012</small>
+                                            <?php echo $this->session->userdata('email'); ?>                                         
+                                            <!-- <small>Member since Nov. 2012</small> -->
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->

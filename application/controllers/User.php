@@ -91,13 +91,14 @@ class User extends CI_Controller
     
     public function update($id) 
     {
-        $row = $this->User_model->get_by_id($id);
+        $row = $this->User_model->get_by_idv($id);
 
         if ($row) {
             $data = array(
                 'button'        => 'Update',
                 'action'        => site_url('user/update_action'),
 		'id_users'      => set_value('id_users', $row->id_users),
+		'id_pegawai'      => set_value('id_pegawai', $row->id_pegawai),
 		'full_name'     => set_value('full_name', $row->full_name),
 		'email'         => set_value('email', $row->email),
 		'password'      => set_value('password', $row->password),

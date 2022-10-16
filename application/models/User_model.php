@@ -7,6 +7,7 @@ class User_model extends CI_Model
 {
 
     public $table = 'tbl_user';
+    public $table2 = 'v_pegawai';
     public $id = 'id_users';
     public $order = 'DESC';
 
@@ -17,11 +18,10 @@ class User_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_users,full_name,email,nama_level,is_aktif');
-        $this->datatables->from('tbl_user');
+        $this->datatables->select('id_pegawai,id_users,nama,full_name,email,id_user_level,is_aktif,nama_level');
+        $this->datatables->from('v_pegawai');
         $this->datatables->add_column('is_aktif', '$1', 'rename_string_is_aktif(is_aktif)');
         //add this line for join
-        $this->datatables->join('tbl_user_level', 'tbl_user.id_user_level = tbl_user_level.id_user_level');
         $this->datatables->add_column('action',anchor(site_url('user/update/$1'),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>', array('class' => 'btn btn-danger btn-sm'))." 
                 ".anchor(site_url('user/delete/$1'),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_users');
         return $this->datatables->generate();
@@ -39,6 +39,11 @@ class User_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+    function get_by_idv($id)
+    {
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table2)->row();
     }
     
     // get total rows

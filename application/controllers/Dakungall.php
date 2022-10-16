@@ -20,18 +20,27 @@ class Dakungall extends CI_Controller
     } 
     
     public function json() {
+        $iduser=$this->session->userdata('id_users');
+        $iduserlevel=$this->session->userdata('id_user_level');
         header('Content-Type: application/json');
-        echo $this->Dakungall_model->json();
+        echo $this->Dakungall_model->json($iduser,$iduserlevel);
     }
     public function filenya() {
 		$id_crekom=$this->session->userdata('id_crekom');
         header('Content-Type: application/json');
         echo $this->Dakungall_model->jsonfile($id_crekom);
     }
+    public function timnya() {
+        $id_crkom23=$this->session->userdata('crkom');
+        header('Content-Type: application/json');
+        echo $this->Dakungall_model->timnya($id_crkom23);
+    }
 
     public function read($id) 
-    {	$ses_data['id_crekom']      = $id;
-		$this->session->set_userdata($ses_data);
+    {	
+        $iduser=$this->session->userdata('id_users');
+        $ses_data['id_crekom']      = $id;
+       
         $row = $this->Dakungall_model->get_by_id($id);
         if ($row) {
             $data = array(
@@ -59,6 +68,8 @@ class Dakungall extends CI_Controller
 		'button' => 'Unggah',
                 'action' => site_url('dakungall/create_action'),
 	    );
+        $ses_data['crkom']      = $row->id_calon_rekomjak;
+		$this->session->set_userdata($ses_data);
             $this->template->load('template','dakungall/v_dakungall_read', $data);
         } else {
             notif('2');

@@ -75,6 +75,7 @@
 				<td>Status Usulan</td>
 				<td><?php echo status($status_usulan); ?></td>
 			</tr>
+			
 	
 			
 	
@@ -93,7 +94,7 @@
 				<table class='table table-bordered'>
 
 					<tr>
-						<td width='200'>Tujuan Disposisi</td><td><?php echo cmb_diwherebulan('tujuandp', 'v_pegawai', 'nama','id_users','','', 'Masukan nama pegawai ...') ?> <?php echo form_error('tujuandp') ?></td>
+						<td width='200'>Tujuan Disposisi</td><td><?php echo cmb_diwherebulan('tujuandp', 'v_pegawai', 'nama','id_users','','',array('id_user_level' => '4'), 'Masukan nama pegawai ...') ?> <?php echo form_error('tujuandp') ?></td>
 					</tr>
 
 					<tr>

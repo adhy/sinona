@@ -20,8 +20,10 @@ class Usulan extends CI_Controller
     } 
     
     public function json() {
+        $iduser=$this->session->userdata('id_users');
+        $iduserlevel=$this->session->userdata('id_user_level');
         header('Content-Type: application/json');
-        echo $this->Usulan_model->json();
+        echo $this->Usulan_model->json($iduser,$iduserlevel);
     }
 
     public function read($id) 

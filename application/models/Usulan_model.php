@@ -18,16 +18,31 @@ class Usulan_model extends CI_Model
     }
 
     // datatables
-    function json() {
-        $this->datatables->select('id_usulan,kode_usulan,Satuan_Kerja,nama_pengusul,jabatan_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,email,status_usulan,created_by,created_date,modified_by,modified_date,nama,id_user,id_pegawai');
-        $this->datatables->from('v_usulan');
-        //add this line for join
-        //$this->datatables->join('table2', 'v_usulan.field = table2.field');
-        $this->datatables->add_column('surat_usulan', '$1', 'download(surat_usulan)');
-        $this->datatables->add_column('status_usulan', '$1', 'status(status_usulan)');
-        $this->datatables->add_column('nama', '$1', 'disposisi(nama)');
-        $this->datatables->add_column('action', '$1', 'dispotombol(id_usulan,status_usulan)');
-        return $this->datatables->generate();
+    function json($id,$di) {
+        if($di==1||$di==2||$di==3){
+            $this->datatables->select('id_usulan,kode_usulan,Satuan_Kerja,nama_pengusul,jabatan_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,email,status_usulan,created_by,created_date,modified_by,modified_date,nama,id_user,id_pegawai');
+            $this->datatables->from('v_usulan');
+            //add this line for join
+            //$this->datatables->join('table2', 'v_usulan.field = table2.field');
+            $this->datatables->add_column('surat_usulan', '$1', 'download(surat_usulan)');
+            $this->datatables->add_column('status_us', '$1', 'status(status_usulan)');
+            $this->datatables->add_column('nama', '$1', 'disposisi(nama)');
+            $this->datatables->add_column('action', '$1', 'dispotombol(id_usulan,status_usulan)');
+            return $this->datatables->generate();
+        }else{
+            $this->datatables->select('id_usulan,kode_usulan,Satuan_Kerja,nama_pengusul,jabatan_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,email,status_usulan,created_by,created_date,modified_by,modified_date,nama,id_user,id_pegawai');
+            $this->datatables->from('v_usulan');
+            $this->datatables->where('id_user',$id);
+            //add this line for join
+            //$this->datatables->join('table2', 'v_usulan.field = table2.field');
+            $this->datatables->add_column('surat_usulan', '$1', 'download(surat_usulan)');
+            $this->datatables->add_column('status_us', '$1', 'status(status_usulan)');
+            $this->datatables->add_column('nama', '$1', 'disposisi(nama)');
+            $this->datatables->add_column('action', '$1', 'dispotombol(id_usulan,status_usulan)');
+            return $this->datatables->generate();
+        }
+
+        
     }
 
     // get all

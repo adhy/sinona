@@ -8,6 +8,7 @@ class Dakungall_model extends CI_Model
 
     public $table = 'v_dakungall';
     public $table2 = 'v_dakungall';
+    public $table4 = 'v_timkojak';
     public $table3 = 't_dakung_rekomjak';
     public $id = 'id_calon_rekomjak';
     public $id2 = 'id_dakung';
@@ -19,13 +20,33 @@ class Dakungall_model extends CI_Model
     }
 
     // datatables
-    function json() {
-        $this->datatables->select('kode_usulan,id_calon_rekomjak,nama,arahan_pimpinan,status_calon_rekomjak,created_by,created_date,modified_by,modified_date,nama_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,status_usulan,id_usulan,jabatan,id_user');
-        $this->datatables->from('v_dakungall');
-        //add this line for join
-        //$this->datatables->join('table2', 'v_dakungall.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('dakungall/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm')), 'id_calon_rekomjak');
-        return $this->datatables->generate();
+    function json($id,$di) {
+        if($di<=3){
+            $this->datatables->select('kode_usulan,id_calon_rekomjak,nama,arahan_pimpinan,status_calon_rekomjak,created_by,created_date,modified_by,modified_date,nama_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,status_usulan,id_usulan,jabatan,id_user');
+            $this->datatables->from('v_dakungalll');
+            $this->datatables->group_by('id_calon_rekomjak');
+            //add this line for join
+            //$this->datatables->join('table2', 'v_dakungall.field = table2.field');
+            $this->datatables->add_column('action', anchor(site_url('dakungall/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm')), 'id_calon_rekomjak');
+            return $this->datatables->generate();
+        }elseif($di==4){
+            $this->datatables->select('kode_usulan,id_calon_rekomjak,nama,arahan_pimpinan,status_calon_rekomjak,created_by,created_date,modified_by,modified_date,nama_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,status_usulan,id_usulan,jabatan,id_user');
+            $this->datatables->from('v_dakungalll');
+            $this->datatables->where('id_user',$id);
+            $this->datatables->group_by('id_calon_rekomjak');
+            //add this line for join
+            //$this->datatables->join('table2', 'v_dakungall.field = table2.field');
+            $this->datatables->add_column('action', anchor(site_url('dakungall/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm')), 'id_calon_rekomjak');
+            return $this->datatables->generate();
+        }else{
+            $this->datatables->select('kode_usulan,id_calon_rekomjak,nama,arahan_pimpinan,status_calon_rekomjak,created_by,created_date,modified_by,modified_date,nama_pengusul,surat_usulan,tahun_usulan,latar_belakang,identifikasi_masalah,tujuan,catatan,telepon,status_usulan,id_usulan,jabatan,id_user');
+            $this->datatables->from('v_dakungalll');
+            $this->datatables->where('id_user',$id);
+            //add this line for join
+            //$this->datatables->join('table2', 'v_dakungall.field = table2.field');
+            $this->datatables->add_column('action', anchor(site_url('dakungall/read/$1'),'<i class="fa fa-eye" aria-hidden="true"></i>', array('class' => 'btn btn-success btn-sm')), 'id_calon_rekomjak');
+            return $this->datatables->generate();
+        }
     }
     function jsonfile($id) {
         $this->datatables->select('id_dakung,id_kategori,id_jenis_kegiatan,id_calon_rekomjak,judul_dakung,file_dakung');
@@ -35,6 +56,16 @@ class Dakungall_model extends CI_Model
         //add this line for join
         //$this->datatables->join('table2', 'v_calon.field = table2.field');
         $this->datatables->add_column('action', anchor('#','<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" data-href="'.site_url('dakungall/del/$1').'" data-toggle="modal" data-target="#confirm-delete"'), 'id_dakung');
+        return $this->datatables->generate();
+    }
+    function timnya($id) {
+        $this->datatables->select('id_calon_rekomjak,id_user,jabatan,nama,id_tim_rekomjak');
+        $this->datatables->from('v_timkojak');
+        //$this->datatables->where('id_calon_rekomjak',$id);
+        $this->datatables->where('id_calon_rekomjak',$id);
+        $this->datatables->add_column('jabatan','$1','helpjab(jabatan)');
+        //add this line for join
+        //$this->datatables->join('table2', 'v_calon.field = table2.field');
         return $this->datatables->generate();
     }
     // get all
