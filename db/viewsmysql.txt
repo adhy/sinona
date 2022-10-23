@@ -1,0 +1,250 @@
+//v_calon
+SELECT
+	t_usulan.kode_usulan, 
+	t_calon_rekomjak.id_calon_rekomjak, 
+	pegawai_data.nama, 
+	t_calon_rekomjak.arahan_pimpinan, 
+	t_calon_rekomjak.status_calon_rekomjak, 
+	t_calon_rekomjak.created_by, 
+	t_calon_rekomjak.created_date, 
+	t_calon_rekomjak.modified_by, 
+	t_calon_rekomjak.modified_date, 
+	t_usulan.nama_pengusul, 
+	t_usulan.surat_usulan, 
+	t_usulan.tahun_usulan, 
+	t_usulan.latar_belakang, 
+	t_usulan.identifikasi_masalah, 
+	t_usulan.tujuan, 
+	t_usulan.catatan, 
+	t_usulan.telepon, 
+	t_usulan.status_usulan, 
+	t_usulan.id_usulan, 
+	t_tim_rekomjak.jabatan, 
+	t_calon_rekomjak.id_user
+FROM
+	t_calon_rekomjak
+	INNER JOIN
+	t_usulan
+	ON 
+		t_calon_rekomjak.id_usulan = t_usulan.id_usulan
+	INNER JOIN
+	tbl_user
+	ON 
+		t_calon_rekomjak.id_user = tbl_user.id_users
+	INNER JOIN
+	pegawai_data
+	ON 
+		tbl_user.id_pegawai = pegawai_data.id_pegawai
+	LEFT JOIN
+	t_tim_rekomjak
+	ON 
+		t_calon_rekomjak.id_calon_rekomjak = t_tim_rekomjak.id_calon_rekomjak AND
+		tbl_user.id_users = t_tim_rekomjak.id_user
+GROUP BY
+	t_calon_rekomjak.id_usulan 
+
+//v_dakung
+SELECT
+	t_dakung_rekomjak.id_dakung, 
+	t_dakung_rekomjak.id_kategori, 
+	t_dakung_rekomjak.id_jenis_kegiatan, 
+	t_dakung_rekomjak.id_calon_rekomjak, 
+	t_dakung_rekomjak.judul_dakung, 
+	t_dakung_rekomjak.file_dakung
+FROM
+	t_dakung_rekomjak 
+//v_dakungall
+SELECT
+	t_usulan.kode_usulan, 
+	t_calon_rekomjak.id_calon_rekomjak, 
+	pegawai_data.nama, 
+	t_calon_rekomjak.arahan_pimpinan, 
+	t_calon_rekomjak.status_calon_rekomjak, 
+	t_calon_rekomjak.created_by, 
+	t_calon_rekomjak.created_date, 
+	t_calon_rekomjak.modified_by, 
+	t_calon_rekomjak.modified_date, 
+	t_usulan.nama_pengusul, 
+	t_usulan.surat_usulan, 
+	t_usulan.tahun_usulan, 
+	t_usulan.latar_belakang, 
+	t_usulan.identifikasi_masalah, 
+	t_usulan.tujuan, 
+	t_usulan.catatan, 
+	t_usulan.telepon, 
+	t_usulan.status_usulan, 
+	t_usulan.id_usulan, 
+	t_tim_rekomjak.jabatan, 
+	t_calon_rekomjak.id_user, 
+	t_tim_rekomjak.id_tim_rekomjak
+FROM
+	t_calon_rekomjak
+	LEFT JOIN
+	t_usulan
+	ON 
+		t_calon_rekomjak.id_usulan = t_usulan.id_usulan
+	LEFT JOIN
+	tbl_user
+	ON 
+		t_calon_rekomjak.id_user = tbl_user.id_users
+	LEFT JOIN
+	pegawai_data
+	ON 
+		tbl_user.id_pegawai = pegawai_data.id_pegawai
+	LEFT JOIN
+	t_tim_rekomjak
+	ON 
+		t_calon_rekomjak.id_calon_rekomjak = t_tim_rekomjak.id_calon_rekomjak AND
+		tbl_user.id_users = t_tim_rekomjak.id_user 
+//v_dakungalll
+SELECT
+	t_calon_rekomjak.id_calon_rekomjak, 
+	t_calon_rekomjak.arahan_pimpinan, 
+	t_calon_rekomjak.id_usulan, 
+	t_tim_rekomjak.jabatan, 
+	t_tim_rekomjak.id_user, 
+	tbl_user.id_pegawai, 
+	pegawai_data.nama, 
+	t_calon_rekomjak.status_calon_rekomjak, 
+	t_calon_rekomjak.created_by, 
+	t_calon_rekomjak.created_date, 
+	t_calon_rekomjak.modified_date, 
+	t_calon_rekomjak.modified_by, 
+	t_usulan.kode_usulan, 
+	t_usulan.nama_pengusul, 
+	t_usulan.jabatan_pengusul, 
+	t_usulan.surat_usulan, 
+	t_usulan.tahun_usulan, 
+	t_usulan.latar_belakang, 
+	t_usulan.identifikasi_masalah, 
+	t_usulan.tujuan, 
+	t_usulan.catatan, 
+	t_usulan.telepon, 
+	t_usulan.email, 
+	t_usulan.status_usulan
+FROM
+	t_calon_rekomjak
+	LEFT JOIN
+	t_tim_rekomjak
+	ON 
+		t_calon_rekomjak.id_calon_rekomjak = t_tim_rekomjak.id_calon_rekomjak
+	LEFT JOIN
+	tbl_user
+	ON 
+		t_tim_rekomjak.id_user = tbl_user.id_users
+	LEFT JOIN
+	pegawai_data
+	ON 
+		tbl_user.id_pegawai = pegawai_data.id_pegawai
+	INNER JOIN
+	t_usulan
+	ON 
+		t_calon_rekomjak.id_usulan = t_usulan.id_usulan
+WHERE
+	t_tim_rekomjak.id_user IS NOT NULL 
+//v_pegawai
+SELECT
+	tbl_user.id_pegawai, 
+	tbl_user.id_users, 
+	pegawai_data.nama, 
+	tbl_user.full_name, 
+	tbl_user.email, 
+	tbl_user.`password`, 
+	tbl_user.images, 
+	tbl_user.id_user_level, 
+	tbl_user.is_aktif, 
+	tbl_user_level.nama_level
+FROM
+	tbl_user
+	LEFT JOIN
+	pegawai_data
+	ON 
+		tbl_user.id_pegawai = pegawai_data.id_pegawai
+	LEFT JOIN
+	tbl_user_level
+	ON 
+		tbl_user.id_user_level = tbl_user_level.id_user_level 
+//v_timkojak
+SELECT
+	t_tim_rekomjak.id_calon_rekomjak, 
+	t_tim_rekomjak.id_user, 
+	t_tim_rekomjak.jabatan, 
+	pegawai_data.nama, 
+	t_tim_rekomjak.id_tim_rekomjak
+FROM
+	t_tim_rekomjak
+	INNER JOIN
+	tbl_user
+	ON 
+		t_tim_rekomjak.id_user = tbl_user.id_users
+	INNER JOIN
+	pegawai_data
+	ON 
+		tbl_user.id_pegawai = pegawai_data.id_pegawai 
+//v_usulan
+SELECT
+	t_usulan.id_usulan, 
+	t_usulan.kode_usulan, 
+	GROUP_CONCAT(DISTINCT CONCAT_WS(', ',
+	t_instansi_lembaga.nama_instansi_lembaga, 
+	t_unit_utama.nama_unit_utama, 
+	t_satuan_kerja.nama_satuan_kerja, 
+	t_dinkes_prov.nama_dinkes_prov, 
+	t_dinkes_kab.nama_dinkes_kab, 
+	t_usulan.nama_instansi_non_kemenkes)) AS Satuan_Kerja, 
+	t_usulan.nama_pengusul, 
+	t_usulan.jabatan_pengusul, 
+	t_usulan.surat_usulan, 
+	t_usulan.tahun_usulan, 
+	t_usulan.latar_belakang, 
+	t_usulan.identifikasi_masalah, 
+	t_usulan.tujuan, 
+	t_usulan.catatan, 
+	t_usulan.telepon, 
+	t_usulan.email, 
+	t_usulan.status_usulan, 
+	t_usulan.created_by, 
+	t_usulan.created_date, 
+	t_usulan.modified_by, 
+	t_usulan.modified_date, 
+	pegawai_data.nama, 
+	t_calon_rekomjak.id_user, 
+	tbl_user.id_pegawai, 
+	t_calon_rekomjak.arahan_pimpinan, 
+	t_calon_rekomjak.status_calon_rekomjak
+FROM
+	t_usulan
+	LEFT JOIN
+	t_instansi_lembaga
+	ON 
+		t_usulan.id_instansi_lembaga = t_instansi_lembaga.id_instansi_lembaga
+	LEFT JOIN
+	t_unit_utama
+	ON 
+		t_usulan.id_unit_utama = t_unit_utama.id_unit_utama
+	LEFT JOIN
+	t_satuan_kerja
+	ON 
+		t_usulan.id_satuan_kerja = t_satuan_kerja.id_satuan_kerja
+	LEFT JOIN
+	t_dinkes_prov
+	ON 
+		t_usulan.id_dinkes_prov = t_dinkes_prov.id_dinkes_prov
+	LEFT JOIN
+	t_dinkes_kab
+	ON 
+		t_usulan.id_dinkes_kab = t_dinkes_kab.id_dinkes_kab
+	LEFT JOIN
+	t_calon_rekomjak
+	ON 
+		t_usulan.id_usulan = t_calon_rekomjak.id_usulan
+	LEFT JOIN
+	tbl_user
+	ON 
+		t_calon_rekomjak.id_user = tbl_user.id_users
+	LEFT JOIN
+	pegawai_data
+	ON 
+		tbl_user.id_pegawai = pegawai_data.id_pegawai
+GROUP BY
+	t_usulan.id_usulan 

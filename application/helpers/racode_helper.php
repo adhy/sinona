@@ -106,10 +106,13 @@ function statuscr($data){
     $ci = get_instance();
     switch ($data){
         case 1:
-            return $data= '<span class="label label-success">Penyusunan</span>';
+            return $data= '<span class="label label-success">Penyusunan TIM</span>';
             break;
         case 2:
             return $data= '<span class="label label-warning">DiTindak Lanjut</span>';
+            break;
+        case 3:
+            return $data= '<span class="label label-warning">Publish</span>';
             break;
         case 99:
             return $data= '<span class="label label-danger">Ditolak</span>';

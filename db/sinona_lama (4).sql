@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2022 at 10:05 AM
+-- Generation Time: Oct 16, 2022 at 11:02 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -213,24 +213,12 @@ INSERT INTO `tbl_hak_akses` (`id`, `id_user_level`, `id_menu`) VALUES
 (46, 1, 27),
 (47, 1, 26),
 (48, 1, 25),
+(51, 3, 27),
+(52, 3, 26),
 (53, 3, 25),
 (55, 4, 26),
-(59, 5, 29),
-(60, 5, 30),
-(61, 5, 31),
-(62, 4, 29),
-(63, 4, 30),
-(64, 4, 31),
-(65, 2, 31),
-(66, 2, 30),
-(67, 2, 29),
-(68, 3, 29),
-(69, 3, 30),
-(70, 3, 31),
-(71, 1, 29),
-(72, 1, 30),
-(73, 1, 31),
-(74, 3, 26);
+(56, 4, 27),
+(57, 5, 27);
 
 -- --------------------------------------------------------
 
@@ -267,10 +255,7 @@ INSERT INTO `tbl_menu` (`id_menu`, `title`, `url`, `icon`, `is_main_menu`, `is_a
 (23, 'Data satuan Kerja', 'satuan_kerja', 'fa fa-caret-right', 15, 'y'),
 (25, 'Usulan Rekomjak', 'usulan', 'fa fa-caret-right', 0, 'y'),
 (26, 'Calon Rekomjak', 'calon', 'fa fa-caret-right', 0, 'y'),
-(27, 'Dakung Rekomjak', 'dakungall', 'fa fa-caret-right', 0, 'y'),
-(29, 'Persiapan', 'persiapan', 'fa fa-caret-right', 0, 'y'),
-(30, 'Pelaksanaan', 'pelaksanaan', 'fa fa-caret-right', 0, 'y'),
-(31, 'hasil', 'hasil', 'fa fa-caret-right', 0, 'y');
+(27, 'Dakung Rekomjak', 'dakungall', 'fa fa-caret-right', 0, 'y');
 
 -- --------------------------------------------------------
 
@@ -353,7 +338,7 @@ CREATE TABLE `t_calon_rekomjak` (
   `id_usulan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL COMMENT 'PIC, user yang ditugaskan',
   `arahan_pimpinan` text NOT NULL,
-  `status_calon_rekomjak` enum('1','2','3','99') NOT NULL COMMENT '1=Penyusunan TIM;2=Ditindak Lanjuti;3=Publish;99=Ditolak',
+  `status_calon_rekomjak` enum('1','2','99') NOT NULL COMMENT '1=Penyusunan TIM;2=Ditindak Lanjuti;99=Ditolak',
   `created_by` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL,
   `modified_by` varchar(255) NOT NULL,
@@ -366,8 +351,7 @@ CREATE TABLE `t_calon_rekomjak` (
 
 INSERT INTO `t_calon_rekomjak` (`id_calon_rekomjak`, `id_usulan`, `id_user`, `arahan_pimpinan`, `status_calon_rekomjak`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (2, 1, 9, 'tes arahan', '1', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(3, 2, 12, 'tes', '1', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(5, 4, 9, 'contoh arahan', '2', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+(3, 2, 12, 'tes', '1', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -395,13 +379,7 @@ CREATE TABLE `t_dakung_rekomjak` (
 INSERT INTO `t_dakung_rekomjak` (`id_dakung`, `id_kategori`, `id_jenis_kegiatan`, `id_calon_rekomjak`, `judul_dakung`, `file_dakung`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (4, 1, 1, 2, 'tes', '2048599333634b910ea76f5.pdf', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
 (5, 1, 1, 2, 'hgkhgk', '599455692634b9117a30b1.docx', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(6, 1, 1, 2, 'rjejetj', '1588569815634b9125156b0.pdf', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(7, 1, 1, 5, 'Rahmi Amelia, S.Si', '18024677626354bbfdcd7d5.pdf', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(8, 1, 3, 2, 'uji hasil', '8754882096354dd7f451cc.txt', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(10, 1, 3, 2, 'fddfgerg', '_6420880826354df65a3d7c.xlsx', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(11, 1, 3, 2, 'tes dakung hasil', '12193129406354dfb5e3e92.pdf', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(17, 1, 2, 5, 'uji pelaksaana', '3858008626354e5a411ee7.pdf', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(18, 1, 1, 5, 'Adi Setyo Wicaksono', '20398383586354e7bd3c519.xls', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+(6, 1, 1, 2, 'rjejetj', '1588569815634b9125156b0.pdf', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -491,9 +469,7 @@ CREATE TABLE `t_jenis_kegiatan` (
 --
 
 INSERT INTO `t_jenis_kegiatan` (`id_jenis_kegiatan`, `nama_kegiatan`) VALUES
-(1, 'Persiapan Rekomjak'),
-(2, 'Pelaksanaan Rekomjak'),
-(3, 'Hasil Rekomjak');
+(1, 'Jenis kegiatan');
 
 -- --------------------------------------------------------
 
@@ -779,9 +755,7 @@ CREATE TABLE `t_tim_rekomjak` (
 
 INSERT INTO `t_tim_rekomjak` (`id_tim_rekomjak`, `id_user`, `id_calon_rekomjak`, `jabatan`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (15, 9, 2, '0', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(16, 11, 2, '3', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(17, 9, 5, '0', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(18, 11, 5, '3', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+(16, 11, 2, '3', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -847,8 +821,244 @@ CREATE TABLE `t_usulan` (
 
 INSERT INTO `t_usulan` (`id_usulan`, `kode_usulan`, `id_instansi_lembaga`, `id_unit_utama`, `id_satuan_kerja`, `id_dinkes_prov`, `id_dinkes_kab`, `nama_instansi_non_kemenkes`, `nama_pengusul`, `jabatan_pengusul`, `surat_usulan`, `tahun_usulan`, `latar_belakang`, `identifikasi_masalah`, `tujuan`, `catatan`, `telepon`, `email`, `status_usulan`, `created_by`, `created_date`, `modified_by`, `modified_date`) VALUES
 (1, '234', 1, 8, 211, NULL, NULL, NULL, 'contoh', 'contoh', 'contoh', '2002', 'contoh', 'contoh', 'contoh', 'contoh', '987', 'contoh', '2', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(2, '777', NULL, NULL, NULL, 1, NULL, NULL, 'contoh', 'contoh', 'contoh', '2002', 'contoh', 'contoh', 'contoh', 'contoh', '987', 'contoh', '2', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(4, '564', 3, NULL, NULL, NULL, 2, NULL, 'coba', 'coba', 'coba', '2002', 'coba', 'coba', 'coba', 'coba', '553', 'coba', '2', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+(2, '777', NULL, NULL, NULL, 1, NULL, NULL, 'contoh', 'contoh', 'contoh', '2002', 'contoh', 'contoh', 'contoh', 'contoh', '987', 'contoh', '2', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_calon`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_calon` (
+`kode_usulan` varchar(15)
+,`id_calon_rekomjak` int(11)
+,`nama` varchar(255)
+,`arahan_pimpinan` text
+,`status_calon_rekomjak` enum('1','2','99')
+,`created_by` varchar(255)
+,`created_date` datetime
+,`modified_by` varchar(255)
+,`modified_date` datetime
+,`nama_pengusul` varchar(255)
+,`surat_usulan` varchar(255)
+,`tahun_usulan` char(4)
+,`latar_belakang` varchar(500)
+,`identifikasi_masalah` varchar(500)
+,`tujuan` varchar(500)
+,`catatan` varchar(500)
+,`telepon` varchar(15)
+,`status_usulan` enum('0','1','2','99')
+,`id_usulan` int(11)
+,`jabatan` enum('0','1','2','3')
+,`id_user` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_dakung`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_dakung` (
+`id_dakung` int(11)
+,`id_kategori` int(11)
+,`id_jenis_kegiatan` int(11)
+,`id_calon_rekomjak` int(11)
+,`judul_dakung` varchar(255)
+,`file_dakung` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_dakungall`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_dakungall` (
+`kode_usulan` varchar(15)
+,`id_calon_rekomjak` int(11)
+,`nama` varchar(255)
+,`arahan_pimpinan` text
+,`status_calon_rekomjak` enum('1','2','99')
+,`created_by` varchar(255)
+,`created_date` datetime
+,`modified_by` varchar(255)
+,`modified_date` datetime
+,`nama_pengusul` varchar(255)
+,`surat_usulan` varchar(255)
+,`tahun_usulan` char(4)
+,`latar_belakang` varchar(500)
+,`identifikasi_masalah` varchar(500)
+,`tujuan` varchar(500)
+,`catatan` varchar(500)
+,`telepon` varchar(15)
+,`status_usulan` enum('0','1','2','99')
+,`id_usulan` int(11)
+,`jabatan` enum('0','1','2','3')
+,`id_user` int(11)
+,`id_tim_rekomjak` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_dakungalll`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_dakungalll` (
+`id_calon_rekomjak` int(11)
+,`arahan_pimpinan` text
+,`id_usulan` int(11)
+,`jabatan` enum('0','1','2','3')
+,`id_user` int(11)
+,`id_pegawai` int(11)
+,`nama` varchar(255)
+,`status_calon_rekomjak` enum('1','2','99')
+,`created_by` varchar(255)
+,`created_date` datetime
+,`modified_date` datetime
+,`modified_by` varchar(255)
+,`kode_usulan` varchar(15)
+,`nama_pengusul` varchar(255)
+,`jabatan_pengusul` varchar(255)
+,`surat_usulan` varchar(255)
+,`tahun_usulan` char(4)
+,`latar_belakang` varchar(500)
+,`identifikasi_masalah` varchar(500)
+,`tujuan` varchar(500)
+,`catatan` varchar(500)
+,`telepon` varchar(15)
+,`email` varchar(255)
+,`status_usulan` enum('0','1','2','99')
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_pegawai`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_pegawai` (
+`id_pegawai` int(11)
+,`id_users` int(11)
+,`nama` varchar(255)
+,`full_name` varchar(50)
+,`email` varchar(50)
+,`password` varchar(255)
+,`images` text
+,`id_user_level` int(11)
+,`is_aktif` enum('y','n')
+,`nama_level` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_timkojak`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_timkojak` (
+`id_calon_rekomjak` int(11)
+,`id_user` int(11)
+,`jabatan` enum('0','1','2','3')
+,`nama` varchar(255)
+,`id_tim_rekomjak` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_usulan`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_usulan` (
+`id_usulan` int(11)
+,`kode_usulan` varchar(15)
+,`Satuan_Kerja` mediumtext
+,`nama_pengusul` varchar(255)
+,`jabatan_pengusul` varchar(255)
+,`surat_usulan` varchar(255)
+,`tahun_usulan` char(4)
+,`latar_belakang` varchar(500)
+,`identifikasi_masalah` varchar(500)
+,`tujuan` varchar(500)
+,`catatan` varchar(500)
+,`telepon` varchar(15)
+,`email` varchar(255)
+,`status_usulan` enum('0','1','2','99')
+,`created_by` varchar(255)
+,`created_date` datetime
+,`modified_by` varchar(255)
+,`modified_date` datetime
+,`nama` varchar(255)
+,`id_user` int(11)
+,`id_pegawai` int(11)
+,`arahan_pimpinan` text
+,`status_calon_rekomjak` enum('1','2','99')
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_calon`
+--
+DROP TABLE IF EXISTS `v_calon`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`silly`@`localhost` SQL SECURITY DEFINER VIEW `v_calon`  AS SELECT `t_usulan`.`kode_usulan` AS `kode_usulan`, `t_calon_rekomjak`.`id_calon_rekomjak` AS `id_calon_rekomjak`, `pegawai_data`.`nama` AS `nama`, `t_calon_rekomjak`.`arahan_pimpinan` AS `arahan_pimpinan`, `t_calon_rekomjak`.`status_calon_rekomjak` AS `status_calon_rekomjak`, `t_calon_rekomjak`.`created_by` AS `created_by`, `t_calon_rekomjak`.`created_date` AS `created_date`, `t_calon_rekomjak`.`modified_by` AS `modified_by`, `t_calon_rekomjak`.`modified_date` AS `modified_date`, `t_usulan`.`nama_pengusul` AS `nama_pengusul`, `t_usulan`.`surat_usulan` AS `surat_usulan`, `t_usulan`.`tahun_usulan` AS `tahun_usulan`, `t_usulan`.`latar_belakang` AS `latar_belakang`, `t_usulan`.`identifikasi_masalah` AS `identifikasi_masalah`, `t_usulan`.`tujuan` AS `tujuan`, `t_usulan`.`catatan` AS `catatan`, `t_usulan`.`telepon` AS `telepon`, `t_usulan`.`status_usulan` AS `status_usulan`, `t_usulan`.`id_usulan` AS `id_usulan`, `t_tim_rekomjak`.`jabatan` AS `jabatan`, `t_calon_rekomjak`.`id_user` AS `id_user` FROM ((((`t_calon_rekomjak` join `t_usulan` on(`t_calon_rekomjak`.`id_usulan` = `t_usulan`.`id_usulan`)) join `tbl_user` on(`t_calon_rekomjak`.`id_user` = `tbl_user`.`id_users`)) join `pegawai_data` on(`tbl_user`.`id_pegawai` = `pegawai_data`.`id_pegawai`)) left join `t_tim_rekomjak` on(`t_calon_rekomjak`.`id_calon_rekomjak` = `t_tim_rekomjak`.`id_calon_rekomjak` and `tbl_user`.`id_users` = `t_tim_rekomjak`.`id_user`)) GROUP BY `t_calon_rekomjak`.`id_usulan``id_usulan`  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_dakung`
+--
+DROP TABLE IF EXISTS `v_dakung`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`` SQL SECURITY DEFINER VIEW `v_dakung`  AS SELECT `t_dakung_rekomjak`.`id_dakung` AS `id_dakung`, `t_dakung_rekomjak`.`id_kategori` AS `id_kategori`, `t_dakung_rekomjak`.`id_jenis_kegiatan` AS `id_jenis_kegiatan`, `t_dakung_rekomjak`.`id_calon_rekomjak` AS `id_calon_rekomjak`, `t_dakung_rekomjak`.`judul_dakung` AS `judul_dakung`, `t_dakung_rekomjak`.`file_dakung` AS `file_dakung` FROM `t_dakung_rekomjak``t_dakung_rekomjak`  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_dakungall`
+--
+DROP TABLE IF EXISTS `v_dakungall`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`` SQL SECURITY DEFINER VIEW `v_dakungall`  AS SELECT `t_usulan`.`kode_usulan` AS `kode_usulan`, `t_calon_rekomjak`.`id_calon_rekomjak` AS `id_calon_rekomjak`, `pegawai_data`.`nama` AS `nama`, `t_calon_rekomjak`.`arahan_pimpinan` AS `arahan_pimpinan`, `t_calon_rekomjak`.`status_calon_rekomjak` AS `status_calon_rekomjak`, `t_calon_rekomjak`.`created_by` AS `created_by`, `t_calon_rekomjak`.`created_date` AS `created_date`, `t_calon_rekomjak`.`modified_by` AS `modified_by`, `t_calon_rekomjak`.`modified_date` AS `modified_date`, `t_usulan`.`nama_pengusul` AS `nama_pengusul`, `t_usulan`.`surat_usulan` AS `surat_usulan`, `t_usulan`.`tahun_usulan` AS `tahun_usulan`, `t_usulan`.`latar_belakang` AS `latar_belakang`, `t_usulan`.`identifikasi_masalah` AS `identifikasi_masalah`, `t_usulan`.`tujuan` AS `tujuan`, `t_usulan`.`catatan` AS `catatan`, `t_usulan`.`telepon` AS `telepon`, `t_usulan`.`status_usulan` AS `status_usulan`, `t_usulan`.`id_usulan` AS `id_usulan`, `t_tim_rekomjak`.`jabatan` AS `jabatan`, `t_calon_rekomjak`.`id_user` AS `id_user`, `t_tim_rekomjak`.`id_tim_rekomjak` AS `id_tim_rekomjak` FROM ((((`t_calon_rekomjak` left join `t_usulan` on(`t_calon_rekomjak`.`id_usulan` = `t_usulan`.`id_usulan`)) left join `tbl_user` on(`t_calon_rekomjak`.`id_user` = `tbl_user`.`id_users`)) left join `pegawai_data` on(`tbl_user`.`id_pegawai` = `pegawai_data`.`id_pegawai`)) left join `t_tim_rekomjak` on(`t_calon_rekomjak`.`id_calon_rekomjak` = `t_tim_rekomjak`.`id_calon_rekomjak` and `tbl_user`.`id_users` = `t_tim_rekomjak`.`id_user`)) GROUP BY `t_calon_rekomjak`.`id_user``id_user`  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_dakungalll`
+--
+DROP TABLE IF EXISTS `v_dakungalll`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=``@`%` SQL SECURITY DEFINER VIEW `v_dakungalll`  AS SELECT `t_calon_rekomjak`.`id_calon_rekomjak` AS `id_calon_rekomjak`, `t_calon_rekomjak`.`arahan_pimpinan` AS `arahan_pimpinan`, `t_calon_rekomjak`.`id_usulan` AS `id_usulan`, `t_tim_rekomjak`.`jabatan` AS `jabatan`, `t_tim_rekomjak`.`id_user` AS `id_user`, `tbl_user`.`id_pegawai` AS `id_pegawai`, `pegawai_data`.`nama` AS `nama`, `t_calon_rekomjak`.`status_calon_rekomjak` AS `status_calon_rekomjak`, `t_calon_rekomjak`.`created_by` AS `created_by`, `t_calon_rekomjak`.`created_date` AS `created_date`, `t_calon_rekomjak`.`modified_date` AS `modified_date`, `t_calon_rekomjak`.`modified_by` AS `modified_by`, `t_usulan`.`kode_usulan` AS `kode_usulan`, `t_usulan`.`nama_pengusul` AS `nama_pengusul`, `t_usulan`.`jabatan_pengusul` AS `jabatan_pengusul`, `t_usulan`.`surat_usulan` AS `surat_usulan`, `t_usulan`.`tahun_usulan` AS `tahun_usulan`, `t_usulan`.`latar_belakang` AS `latar_belakang`, `t_usulan`.`identifikasi_masalah` AS `identifikasi_masalah`, `t_usulan`.`tujuan` AS `tujuan`, `t_usulan`.`catatan` AS `catatan`, `t_usulan`.`telepon` AS `telepon`, `t_usulan`.`email` AS `email`, `t_usulan`.`status_usulan` AS `status_usulan` FROM ((((`t_calon_rekomjak` left join `t_tim_rekomjak` on(`t_calon_rekomjak`.`id_calon_rekomjak` = `t_tim_rekomjak`.`id_calon_rekomjak`)) left join `tbl_user` on(`t_tim_rekomjak`.`id_user` = `tbl_user`.`id_users`)) left join `pegawai_data` on(`tbl_user`.`id_pegawai` = `pegawai_data`.`id_pegawai`)) join `t_usulan` on(`t_calon_rekomjak`.`id_usulan` = `t_usulan`.`id_usulan`)) WHERE `t_tim_rekomjak`.`id_user` is not nullnot null  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_pegawai`
+--
+DROP TABLE IF EXISTS `v_pegawai`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`silly`@`localhost` SQL SECURITY DEFINER VIEW `v_pegawai`  AS SELECT `tbl_user`.`id_pegawai` AS `id_pegawai`, `tbl_user`.`id_users` AS `id_users`, `pegawai_data`.`nama` AS `nama`, `tbl_user`.`full_name` AS `full_name`, `tbl_user`.`email` AS `email`, `tbl_user`.`password` AS `password`, `tbl_user`.`images` AS `images`, `tbl_user`.`id_user_level` AS `id_user_level`, `tbl_user`.`is_aktif` AS `is_aktif`, `tbl_user_level`.`nama_level` AS `nama_level` FROM ((`tbl_user` left join `pegawai_data` on(`tbl_user`.`id_pegawai` = `pegawai_data`.`id_pegawai`)) left join `tbl_user_level` on(`tbl_user`.`id_user_level` = `tbl_user_level`.`id_user_level`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_timkojak`
+--
+DROP TABLE IF EXISTS `v_timkojak`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`silly`@`localhost` SQL SECURITY DEFINER VIEW `v_timkojak`  AS SELECT `t_tim_rekomjak`.`id_calon_rekomjak` AS `id_calon_rekomjak`, `t_tim_rekomjak`.`id_user` AS `id_user`, `t_tim_rekomjak`.`jabatan` AS `jabatan`, `pegawai_data`.`nama` AS `nama`, `t_tim_rekomjak`.`id_tim_rekomjak` AS `id_tim_rekomjak` FROM ((`t_tim_rekomjak` join `tbl_user` on(`t_tim_rekomjak`.`id_user` = `tbl_user`.`id_users`)) join `pegawai_data` on(`tbl_user`.`id_pegawai` = `pegawai_data`.`id_pegawai`))  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_usulan`
+--
+DROP TABLE IF EXISTS `v_usulan`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`silly`@`localhost` SQL SECURITY DEFINER VIEW `v_usulan`  AS SELECT `t_usulan`.`id_usulan` AS `id_usulan`, `t_usulan`.`kode_usulan` AS `kode_usulan`, group_concat(distinct concat_ws(', ',`t_instansi_lembaga`.`nama_instansi_lembaga`,`t_unit_utama`.`nama_unit_utama`,`t_satuan_kerja`.`nama_satuan_kerja`,`t_dinkes_prov`.`nama_dinkes_prov`,`t_dinkes_kab`.`nama_dinkes_kab`,`t_usulan`.`nama_instansi_non_kemenkes`) separator ',') AS `Satuan_Kerja`, `t_usulan`.`nama_pengusul` AS `nama_pengusul`, `t_usulan`.`jabatan_pengusul` AS `jabatan_pengusul`, `t_usulan`.`surat_usulan` AS `surat_usulan`, `t_usulan`.`tahun_usulan` AS `tahun_usulan`, `t_usulan`.`latar_belakang` AS `latar_belakang`, `t_usulan`.`identifikasi_masalah` AS `identifikasi_masalah`, `t_usulan`.`tujuan` AS `tujuan`, `t_usulan`.`catatan` AS `catatan`, `t_usulan`.`telepon` AS `telepon`, `t_usulan`.`email` AS `email`, `t_usulan`.`status_usulan` AS `status_usulan`, `t_usulan`.`created_by` AS `created_by`, `t_usulan`.`created_date` AS `created_date`, `t_usulan`.`modified_by` AS `modified_by`, `t_usulan`.`modified_date` AS `modified_date`, `pegawai_data`.`nama` AS `nama`, `t_calon_rekomjak`.`id_user` AS `id_user`, `tbl_user`.`id_pegawai` AS `id_pegawai`, `t_calon_rekomjak`.`arahan_pimpinan` AS `arahan_pimpinan`, `t_calon_rekomjak`.`status_calon_rekomjak` AS `status_calon_rekomjak` FROM ((((((((`t_usulan` left join `t_instansi_lembaga` on(`t_usulan`.`id_instansi_lembaga` = `t_instansi_lembaga`.`id_instansi_lembaga`)) left join `t_unit_utama` on(`t_usulan`.`id_unit_utama` = `t_unit_utama`.`id_unit_utama`)) left join `t_satuan_kerja` on(`t_usulan`.`id_satuan_kerja` = `t_satuan_kerja`.`id_satuan_kerja`)) left join `t_dinkes_prov` on(`t_usulan`.`id_dinkes_prov` = `t_dinkes_prov`.`id_dinkes_prov`)) left join `t_dinkes_kab` on(`t_usulan`.`id_dinkes_kab` = `t_dinkes_kab`.`id_dinkes_kab`)) left join `t_calon_rekomjak` on(`t_usulan`.`id_usulan` = `t_calon_rekomjak`.`id_usulan`)) left join `tbl_user` on(`t_calon_rekomjak`.`id_user` = `tbl_user`.`id_users`)) left join `pegawai_data` on(`tbl_user`.`id_pegawai` = `pegawai_data`.`id_pegawai`)) GROUP BY `t_usulan`.`id_usulan``id_usulan`  ;
 
 --
 -- Indexes for dumped tables
@@ -992,13 +1202,13 @@ ALTER TABLE `pegawai_data`
 -- AUTO_INCREMENT for table `tbl_hak_akses`
 --
 ALTER TABLE `tbl_hak_akses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tbl_setting`
@@ -1022,13 +1232,13 @@ ALTER TABLE `tbl_user_level`
 -- AUTO_INCREMENT for table `t_calon_rekomjak`
 --
 ALTER TABLE `t_calon_rekomjak`
-  MODIFY `id_calon_rekomjak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_calon_rekomjak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_dakung_rekomjak`
 --
 ALTER TABLE `t_dakung_rekomjak`
-  MODIFY `id_dakung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_dakung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `t_dinkes_kab`
@@ -1052,7 +1262,7 @@ ALTER TABLE `t_instansi_lembaga`
 -- AUTO_INCREMENT for table `t_jenis_kegiatan`
 --
 ALTER TABLE `t_jenis_kegiatan`
-  MODIFY `id_jenis_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jenis_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `t_kategori`
@@ -1070,7 +1280,7 @@ ALTER TABLE `t_satuan_kerja`
 -- AUTO_INCREMENT for table `t_tim_rekomjak`
 --
 ALTER TABLE `t_tim_rekomjak`
-  MODIFY `id_tim_rekomjak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_tim_rekomjak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `t_unit_utama`
@@ -1082,7 +1292,7 @@ ALTER TABLE `t_unit_utama`
 -- AUTO_INCREMENT for table `t_usulan`
 --
 ALTER TABLE `t_usulan`
-  MODIFY `id_usulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_usulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

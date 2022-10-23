@@ -1,12 +1,12 @@
 
 <div class="content-wrapper">
-	
-	<section class="content">
-	<div class="row">
-		<div class="col-md-7">
+<section class="content">
+	<section class="col-lg-7 connectedSortable ui-sortable">
+		<div class="row">
+			<div class="col-md-12">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title">DETAIL DATA CALON</h3>
+				<h3 class="box-title">DETAIL USULAN REKOMJAK</h3>
 			</div>
 		
 		<table class='table table-bordered'>        
@@ -76,124 +76,22 @@
 				<td>Status Usulan</td>
 				<td><?php echo status($status_usulan); ?></td>
 			</tr>
-
-			<tr>
-				<td>Usulan Ditolak</td>
-				<td><?php 
-						//$id_usulan=99;
-						$status_usulan=$this->session->userdata('status_usulan');
-						$id_usulan=$this->session->userdata('id_usulan');
-						if($status_usulan!=99){
-							echo anchor(site_url('calon/tolak/'.$id_usulan.''),'<i class="fa fa-remove" aria-hidden="true"></i>Tolak Usulan', array('class' => 'btn btn-danger btn-sm'));
-						}elseif($status_usulan==99){
-							echo anchor(site_url('calon/terima/'.$id_usulan.''),'<i class="fa fa-undo" aria-hidden="true"></i>Usulan Diterima', array('class' => 'btn btn-success btn-sm'));
-						}
-				?></td>
-			</tr>
-			<tr>
-				<td>Publish Usulan</td>
-				<td><?php 
-						//$id_usulan=99;
-						$status_usulan=$this->session->userdata('status_usulan');
-						$id_usulan=$this->session->userdata('id_usulan');
-						$stcl_rekom=$this->session->userdata('status_calon_rekomjak');
-						if($stcl_rekom==2){
-							echo anchor(site_url('calon/terbitkan/'.$id_usulan.''),'<i class="fa fa-paper-plane-o" aria-hidden="true"></i>Penerbitan Usulan', array('class' => 'btn btn-success btn-sm'));
-						}elseif($stcl_rekom==3){
-							echo anchor(site_url('calon/batalkan/'.$id_usulan.''),'<i class="fa fa-undo" aria-hidden="true"></i>Batalkan Penerbitan Usulan', array('class' => 'btn btn-danger btn-sm'));
-							
-						}else{
-							echo anchor(site_url('#'),'<i class="fa fa-undo" aria-hidden="true"></i>Penerbitan Usulan', array('class' => 'btn btn-success btn-sm disabled'));
-						}
-				?></td>
-			</tr>
-			<tr>
-				<td>Tetapkan Tim</td>
-				<td><?php 
-						//$id_usulan=99;
-						$status_usulan=$this->session->userdata('status_usulan');
-						$id_usulan=$this->session->userdata('id_usulan');
-						$stcl_rekom=$this->session->userdata('status_calon_rekomjak');
-						if($stcl_rekom==1){
-							echo anchor(site_url('calon/timkunci/'.$id_usulan.''),'<i class="fa fa-lock" aria-hidden="true"></i>Kunci Tim', array('class' => 'btn btn-success btn-sm'));
-						}elseif($stcl_rekom==3||$stcl_rekom==2){
-							echo anchor(site_url('calon/timbuka/'.$id_usulan.''),'<i class="fa fa-unlock" aria-hidden="true"></i>Buka Kunci Tim', array('class' => 'btn btn-danger btn-sm'));
-							
-						}else{
-							echo anchor(site_url('#'),'<i class="fa fa-undo" aria-hidden="true"></i>Kunci Tim', array('class' => 'btn btn-success btn-sm disabled'));
-						}
-				?></td>
-			</tr>
-			
-	
+		
 		</table>
 		</div>
 		</div>
-		<div class="col-md-5">
-		<div class="box box-warning box-solid">
-			<div class="box-header with-border">
-				<h3 class="box-title"> Tim Rekomjak</h3>
-			</div>
-			<form action="<?php echo $action; ?>" method="post">
-			
-				<table class='table table-bordered'>
-					<?php 
-					$ses_data['id_calrekom']      = $id_calon_rekomjak;
-					$this->session->set_userdata($ses_data);
-					?>
-				
-					<tr>
-						<td width='200'>Nama</td><td><?php echo cmb_di('nama', 'v_pegawai', 'nama','id_users','','', 'Masukan nama pegawai ...') ?> <?php echo form_error('nama') ?></td>
-					</tr>
-
-					<tr>
-					<td width='200'>Jabatan</td><td>
-					<select class="form-control" name="jabatan">
-						<option value='0'>Ketua</option>
-						<option value='1'>Wakil Ketua</option>
-						<option value='2'>Sekretaris</option>
-						<option value='3'>Anggota</option>
-					</select>
-					
-					<?php echo form_error('jabatan') ?></td>
-					</tr>
-	
-					
 		
-					<tr>
-						<td></td>
-						<td>
-							<?php
-							$stcl_rekom=$this->session->userdata('status_calon_rekomjak');
-							if($stcl_rekom==1){?>
-							<input type="hidden" name="id_usulan" value="<?php echo $id_usulan; ?>" /> 
-							<button type="submit" class="btn btn-danger"><i class="fa fa-floppy-o"></i> <?php echo $button ?></button> 
-							<a href="<?php echo site_url('calon') ?>" class="btn btn-info"><i class="fa fa-sign-out"></i> Kembali</a>
-							<?php 
-							}else{?>
-							<a class="btn btn-danger disabled"><i class="fa fa-floppy-o"></i> <?php echo $button ?></a> 
-							<a href="<?php echo site_url('calon') ?>" class="btn btn-info"><i class="fa fa-sign-out"></i> Kembali</a>
-							<?php }?>
-						</td>
-					</tr>
-	
-				</table>
-			</form>
-		</div>
-		</div>
-		<div class="col-md-5">
+		<div class="col-md-9">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
 				<h3 class="box-title"> Daftar Tim Rekomjak</h3>
 			</div>
-			
-			<table class="table table-bordered table-striped" id="mytable">
+			<table class="table table-bordered table-striped" id="mytablea">
             <thead>
                 <tr>
                     <th width="30px">No</th>
 		    <th>Nama</th>
             <th>Jabatan</th>
-		    <th width="200px">Action</th>
                 </tr>
             </thead>
 	    
@@ -202,6 +100,77 @@
 		</div>
 </div>
 	</section>
+	<section class="col-lg-5 connectedSortable ui-sortable">
+	<div class="col-md-12">
+		<div class="box box-warning box-solid">
+			<div class="box-header with-border">
+				<h3 class="box-title">Unggah Dakung Hasil</h3>
+			</div>
+			<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+			
+				<table class='table table-bordered'>
+					<?php 
+					$ses_data['id_calrekom']      = $id_calon_rekomjak;
+					$this->session->set_userdata($ses_data);
+					?>
+				
+					<tr>
+						<td width='200'>Nama</td><td><input type="text" class="form-control" name="nama" id="nama" placeholder="nama"/> <?php echo form_error('nama') ?></td>
+					</tr>
+
+					<tr>
+						<td width='200'>Kategori</td><td><?php echo cmb_di('kategori', 't_kategori', 'nama_kategori','id_kategori','','', 'Masukan kategori ...') ?> <?php echo form_error('kategori') ?></td>
+					</tr>
+
+					<tr>
+						<td width='200'>Kegiatan</td><td>
+                        <input type="hidden" id="kegiatan" name="kegiatan" value="3">
+                        <span><dt>Hasil Rekomjak</dt></span>    
+                        </td>
+					</tr>
+
+					<tr>
+						<td width='200'>Foto Profile <?php echo form_error('dukungan') ?></td><td> <input type="file" name="dukungan"></td>
+					
+					<?php echo form_error('dukungan') ?></td>
+					</tr>
+	
+					
+		
+					<tr>
+						<td></td>
+						<td>
+							<input type="hidden" name="id_usulan" value="<?php echo $id_usulan; ?>" /> 
+							<button type="submit" class="btn btn-danger"><i class="fa fa-floppy-o"></i> <?php echo $button ?></button> 
+							<a href="<?php echo site_url('dakungall') ?>" class="btn btn-info"><i class="fa fa-sign-out"></i> Kembali</a>
+						</td>
+					</tr>
+	
+				</table>
+			</form>
+		</div>
+		</div>
+
+<div class="col-md-12">
+		<div class="box box-warning box-solid">
+			<div class="box-header with-border">
+				<h3 class="box-title"> DATA DAKUNG HASIL</h3>
+			</div>
+			
+			<table class="table table-bordered table-striped" id="mytable">
+            <thead>
+                <tr>
+                    <th width="30px">No</th>
+		    <th>Judul</th>
+		    <th width="200px">Action</th>
+                </tr>
+            </thead>
+	    
+        </table>
+		</div>
+		</div>
+	</section>
+</section>
 </div>
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -268,17 +237,68 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "<?=base_url()?>calon/timnya", "type": "POST"},
+                    ajax: {"url": "<?=base_url('hasil/filenya/3')?>", "type": "POST"},
                     columns: [
                         {
-                            "data": "id_calon_rekomjak",
+                            "data": "id_dakung",
                             "orderable": false
-                        },{"data": "nama", "orderable": false,},{"data": "jabatan", "orderable": false,},
+                        },{"data": "judul_dakung", "orderable": false,},
                         {
                             "data" : "action",
                             "orderable": false,
                             "className" : "text-center"
                         }
+                    ],
+					ordering: false,
+					searching: false,
+					paging: false,
+                    order: [[0, 'desc']],
+                    rowCallback: function(row, data, iDisplayIndex) {
+                        var info = this.fnPagingInfo();
+                        var page = info.iPage;
+                        var length = info.iLength;
+                        var index = page * length + (iDisplayIndex + 1);
+                        $('td:eq(0)', row).html(index);
+                    }
+                });
+            });
+			$(document).ready(function() {
+                $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+                {
+                    return {
+                        "iStart": oSettings._iDisplayStart,
+                        "iEnd": oSettings.fnDisplayEnd(),
+                        "iLength": oSettings._iDisplayLength,
+                        "iTotal": oSettings.fnRecordsTotal(),
+                        "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                        "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                        "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                    };
+                };
+
+                var t = $("#mytablea").dataTable({
+                    initComplete: function() {
+                        var api = this.api();
+                        $('#mytablea_filter input')
+                                .off('.DT')
+                                .on('keyup.DT', function(e) {
+                                    if (e.keyCode == 13) {
+                                        api.search(this.value).draw();
+                            }
+                        });
+                    },
+                    oLanguage: {
+                        sProcessing: "loading..."
+                    },
+                    processing: true,
+                    serverSide: true,
+                    ajax: {"url": "<?=base_url()?>hasil/timnya", "type": "POST"},
+                    columns: [
+                        {
+                            "data": "id_calon_rekomjak",
+                            "orderable": false
+                        },{"data": "nama", "orderable": false,},{"data": "jabatan", "orderable": false,}
+                       
                     ],
 					ordering: false,
 					searching: false,

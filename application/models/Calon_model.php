@@ -42,14 +42,19 @@ class Calon_model extends CI_Model
         
     }
 
-    function timnya($id) {
+    function timnya($id,$di) {
         $this->datatables->select('id_calon_rekomjak,id_user,jabatan,nama,id_tim_rekomjak');
         $this->datatables->from('v_timkojak');
         $this->datatables->where('id_calon_rekomjak',$id);
         $this->datatables->add_column('jabatan','$1','helpjab(jabatan)');
         //add this line for join
+        if($di==1){
+            $this->datatables->add_column('action', anchor('#','<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" data-href="'.site_url('calon/del/$1').'" data-toggle="modal" data-target="#confirm-delete"'), 'id_tim_rekomjak');
+        }else{
+            $this->datatables->add_column('action', anchor('#','<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm disabled" data-href="'.site_url('#').'" data-toggle="modal" data-target="#confirm-delete"'), 'id_tim_rekomjak');
+        }
         //$this->datatables->join('table2', 'v_calon.field = table2.field');
-        $this->datatables->add_column('action', anchor('#','<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" data-href="'.site_url('calon/del/$1').'" data-toggle="modal" data-target="#confirm-delete"'), 'id_tim_rekomjak');
+        
         return $this->datatables->generate();
     }
 

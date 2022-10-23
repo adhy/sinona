@@ -26,9 +26,10 @@ class Calon extends CI_Controller
         echo $this->Calon_model->json($iduser,$iduserlevel);
     }
     public function timnya() {
+        $stcl_rekom=$this->session->userdata('status_calon_rekomjak');
         $id_crkom=$this->session->userdata('id_crkom');
         header('Content-Type: application/json');
-        echo $this->Calon_model->timnya($id_crkom);
+        echo $this->Calon_model->timnya($id_crkom,$stcl_rekom);
     }
 
     public function read($id) 
@@ -62,6 +63,7 @@ class Calon extends CI_Controller
         $ses_data['id_usulan']=$row->id_usulan;
         $ses_data['status_usulan']=$row->status_usulan;
         $ses_data['id_calon_rekomjak']=$row->id_calon_rekomjak;
+        $ses_data['status_calon_rekomjak']=$row->status_calon_rekomjak;
         $this->session->set_userdata($ses_data);
             if($row->status_usulan=='0'){
                 $data_edit2=array('status_usulan'=>'1');
@@ -228,6 +230,86 @@ class Calon extends CI_Controller
         if ($row) {
                 $data_edit2=array('status_usulan'=>'99');     
                 $data_edit22=array('status_calon_rekomjak'=>'99');     
+                $this->db->where("id_usulan",$id)->update('t_usulan',$data_edit2);
+                $this->db->where("id_calon_rekomjak",$id_calon_rekomjak)->update('t_calon_rekomjak',$data_edit22);
+            //$this->Calon_model->del($id);
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        } else {
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        }
+    }
+    public function terima($id) 
+    {
+        $row = $this->Calon_model->get_by_idusulan($id);
+		$id_crkom=$this->session->userdata('id_crkom');
+		$id_calon_rekomjak=$this->session->userdata('id_calon_rekomjak');
+        if ($row) {
+                $data_edit2=array('status_usulan'=>'2');     
+                $data_edit22=array('status_calon_rekomjak'=>'1');     
+                $this->db->where("id_usulan",$id)->update('t_usulan',$data_edit2);
+                $this->db->where("id_calon_rekomjak",$id_calon_rekomjak)->update('t_calon_rekomjak',$data_edit22);
+            //$this->Calon_model->del($id);
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        } else {
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        }
+    }
+    public function terbitkan($id) 
+    {
+        $row = $this->Calon_model->get_by_idusulan($id);
+		$id_crkom=$this->session->userdata('id_crkom');
+		$id_calon_rekomjak=$this->session->userdata('id_calon_rekomjak');
+        if ($row) {
+                $data_edit2=array('status_usulan'=>'2');     
+                $data_edit22=array('status_calon_rekomjak'=>'3');     
+                $this->db->where("id_usulan",$id)->update('t_usulan',$data_edit2);
+                $this->db->where("id_calon_rekomjak",$id_calon_rekomjak)->update('t_calon_rekomjak',$data_edit22);
+            //$this->Calon_model->del($id);
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        } else {
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        }
+    }
+    public function batalkan($id) 
+    {
+        $row = $this->Calon_model->get_by_idusulan($id);
+		$id_crkom=$this->session->userdata('id_crkom');
+		$id_calon_rekomjak=$this->session->userdata('id_calon_rekomjak');
+        if ($row) {
+                $data_edit2=array('status_usulan'=>'2');     
+                $data_edit22=array('status_calon_rekomjak'=>'2');     
+                $this->db->where("id_usulan",$id)->update('t_usulan',$data_edit2);
+                $this->db->where("id_calon_rekomjak",$id_calon_rekomjak)->update('t_calon_rekomjak',$data_edit22);
+            //$this->Calon_model->del($id);
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        } else {
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        }
+    }
+    public function timkunci($id) 
+    {
+        $row = $this->Calon_model->get_by_idusulan($id);
+		$id_crkom=$this->session->userdata('id_crkom');
+		$id_calon_rekomjak=$this->session->userdata('id_calon_rekomjak');
+        if ($row) {
+                $data_edit2=array('status_usulan'=>'2');     
+                $data_edit22=array('status_calon_rekomjak'=>'2');     
+                $this->db->where("id_usulan",$id)->update('t_usulan',$data_edit2);
+                $this->db->where("id_calon_rekomjak",$id_calon_rekomjak)->update('t_calon_rekomjak',$data_edit22);
+            //$this->Calon_model->del($id);
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        } else {
+            redirect(site_url('calon/read/'.$id_crkom.''));
+        }
+    }
+    public function timbuka($id) 
+    {
+        $row = $this->Calon_model->get_by_idusulan($id);
+		$id_crkom=$this->session->userdata('id_crkom');
+		$id_calon_rekomjak=$this->session->userdata('id_calon_rekomjak');
+        if ($row) {
+                $data_edit2=array('status_usulan'=>'2');     
+                $data_edit22=array('status_calon_rekomjak'=>'1');     
                 $this->db->where("id_usulan",$id)->update('t_usulan',$data_edit2);
                 $this->db->where("id_calon_rekomjak",$id_calon_rekomjak)->update('t_calon_rekomjak',$data_edit22);
             //$this->Calon_model->del($id);

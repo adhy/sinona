@@ -6,8 +6,9 @@ if (!defined('BASEPATH'))
 class Kelolamenu extends CI_Controller
 {
     function __construct()
-    {is_login();
+    {
         parent::__construct();
+        is_login();
         $this->load->model('Menu_model');
         $this->load->library('form_validation');        
 	$this->load->library('datatables');
